@@ -32,6 +32,29 @@ INSERT INTO `account`(`AccountId`, `RoundTo`) VALUES (6, 2);
 INSERT INTO `account`(`AccountId`, `RoundTo`) VALUES (7, 2);
 INSERT INTO `account`(`AccountId`, `RoundTo`) VALUES (8, 2);
 
+CREATE TABLE IF NOT EXISTS `ne_stage` (
+  `Meter_id` int(20) NOT NULL,
+  `StartDate` datetime NOT NULL,
+  `endDate` datetime NOT NULL,
+  `meter_start` int(11) NOT NULL,
+  `meter_end` int(11) NOT NULL,
+  `units_consumed` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+('3',STR_TO_DATE('6/30/15 5:00 AM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('6/30/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'22','37','15');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+('3',STR_TO_DATE('6/23/15 5:00 PM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('6/24/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'12','22','10');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+('3',STR_TO_DATE('7/2/15 1:00 PM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('7/02/15 4:55 PM', '%m/%d/%Y %h:%i %p'),'37','50','13');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+('4',STR_TO_DATE('6/30/15 5:00 AM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('6/30/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'12','22','10');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+('4',STR_TO_DATE('7/11/15 5:00 AM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('7/11/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'22','42','20');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+('5',STR_TO_DATE('6/30/15 5:00 AM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('6/30/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'12','22','10');
+
+
 INSERT INTO `equipment`(`EquipmentId`, `AccountId`, `EquipmentType`, `Status`) VALUES (2, 2, 'ElectricMeter', 'Active') ;
 INSERT INTO `equipment`(`EquipmentId`, `AccountId`, `EquipmentType`, `Status`) VALUES (3, 3, 'ElectricMeter', 'Active') ;
 INSERT INTO `equipment`(`EquipmentId`, `AccountId`, `EquipmentType`, `Status`) VALUES (4, 4, 'ElectricMeter', 'Active') ;
