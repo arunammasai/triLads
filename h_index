@@ -1,0 +1,87 @@
+<?php
+	include_once('header.php');
+	include_once('database.php');?>
+	
+	<script>
+	$(document).ready(function()
+	{
+		$('#menu li a').removeClass('active');
+		$('#menu #home a').removeClass('active');
+	});
+	</script>
+	
+    <div class="rk_maincontent"><!--rk_maincontent div start-->
+    	<div class="rk_centercontent"><!--rk_centercontent div start-->
+        	<div class="rk_contentleft"><!--rk_contentleft	 div start-->
+            	<div class="welcome_leftcontent"><!--welcome_leftcontent div satrt-->
+                	<div class="welcome_title"><img src="images/leftarrow_image.png" alt="" align="left" /><span>Welcome to our site</span></div>
+                    <div class="welcome_desc"><!--welcome_desc div start-->
+                    	<img src="images/site_image.png" alt="" />
+                        <p>
+                             M/s. R K power Enterprises have pleasure to introducing  ourselves 
+                            as  one  of the  Service   engineering leading   contractors  for the 
+                            past 10 years. <br />
+                            
+							Our main objective is to achieve the optimal Technology Progress in 
+Electrical &  Mechanical Data  Work activities. We  are providing  the 
+most possible flexibility and reliability in customer service
+
+                        </p>
+                    </div><!--welcome_desc div end-->
+                </div><!--welcome_leftcontent div  end-->
+                <div class="aboutus_content"><!--aboutus_content div start-->
+                	<div class="aboutus_title"><img src="images/leftarrow_image.png" alt="" align="left" /><span>About Us</span></div>
+                    <div class="aboutus_desc"><!--aboutus_desc div start-->
+                    <p>
+                            Having a sound background in electrical contract work and since 
+                            we work all major  industries in and  around Tamilnadu,  Andhra
+                            -pradesh & Karnataka.<br />
+                           
+                            We are successfully by competent engineers, their services were 
+                            utilized by the state electricity board and TNEB in their CEIG 
+                            license works. We have fully furnished office having facility for 
+                            preparation of drawing, being placed closed to the Guindy.
+                            
+                            We now request you to register us in  your vendor list and look 
+							forward to receive your valuable enquiries 
+                    </p>
+                    </div><!--aboutus_desc div end-->
+                    <div class="aboutus_readmore"><a class="active" href="aboutus.html">Read more</a><span><img src="images/read_arrow.png" alt="" /></span></div>
+                </div><!--aboutus_content div end-->
+                <div class="ourclients_content"><!--ourclients_content div satrt-->
+                <div class="ourclients_title"><img src="images/leftarrow_image.png" alt="" align="left" /><span>Our Clients</span></div>
+                <div class="ourclients_desc"><!--ourclients_desc div start-->
+                     <div class="ourclients_text"> National institute of ocean technology <br />(NIOT) Chennai.</div>
+                     <div class="ourclients_text"> Bharat Sanchar Nigam Limited (BSNL), <br />Chennai.</div>
+                     <div class="ourclients_text"> Airport Authority of India (AAI),<br />Meenampakkam.</div>
+                     <div class="ourclients_text"> Ascendas IT Park, Tharamani,  <br />Mahendra City.</div>
+                </div><!--ourclients_desc div end-->
+                <div class="ourclients_readmore"><a class="active" href="clients.html">Read more</a><span><img src="images/read_arrow.png" alt="" /></span></div>
+                </div><!--ourclients_content div end-->
+            </div><!--rk_contentleft div  end-->
+            <div class="rk_contentright"><!--rk_contentright div satrt-->
+            	<div class="ourservice_title"><img src="images/leftarrow_image.png" alt="" align="left" /><span>Our Service List</span></div>
+                <div class="ourservice_list"><!--ourservice_list div satrt-->
+                	<ul>
+                    	<li><img src="images/service_listarrow.png" alt="" /><a>Earthing , Cable leaving & Termination.</a></li>
+                        <li><img src="images/service_listarrow.png" alt="" /><a>2 to 8 pole structural related cabling.</a></li>
+                        <li><img src="images/service_listarrow.png" alt="" /><a>Lightning for office buildings & residential.</a></li>
+                        <li><img src="images/service_listarrow.png" alt="" /><a>Control panel fuse.</a></li>
+                        <li><img src="images/service_listarrow.png" alt="" /><a>Bus duct, MV panel.</a></li>
+                        <li><img src="images/service_listarrow.png" alt="" /><a>PCC, MCC ,LV Switchboad etc.</a></li>
+                        <li><img src="images/service_listarrow.png" alt="" /><a>Data works.</a></li>
+                        <li><img src="images/service_listarrow.png" alt="" /><a>Fire fitting pipeline.</a></li>
+                        <li><img src="images/service_listarrow.png" alt="" /><a>False cieling works.</a></li>
+                        <li><img src="images/service_listarrow.png" alt="" /><a>Single line diagram</a></li>
+                        <li><img src="images/service_listarrow.png" alt="" /><a>Schematic diagram.</a></li>
+                        <li><img src="images/service_listarrow.png" alt="" /><a>Layout diagram.</a></li>
+                        <li><img src="images/service_listarrow.png" alt="" /><a>Amstrong cabining works</a></li>
+                    </ul>
+                </div><!--ourservice_list div end-->
+                <div class="ourservice_readmore"><a class="active"  href="services.html">For more services</a><span><img src="images/read_arrow.png" alt="" /></span></div>
+            </div><!--rk_contentright div end-->
+            <div class="clear"></div>
+        </div><!--rk_centercontent div end-->
+    <div class=" clear"></div>
+    </div><!--rk_maincontent div end-->
+    <?php include_once('footer.php'); ?>
