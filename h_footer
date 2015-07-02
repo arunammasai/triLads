@@ -1,0 +1,18 @@
+
+    <div class="rk_footermain"><!--rk_footermain div satrt-->
+    	<div class="rk_footer"><!--rk_footer div start-->
+        	<div class="rk_footer_menu"><!--rk_footer_menu	 div satrt-->
+            	
+            </div><!--rk_footer_menu div  end-->
+            <div class="rk_follows"><!--rk_follows div start-->
+            	<div class="follows_image1"><a href="http://www.linkedin.com/" target="_blank"><img src="images/li_image.png" alt="" /></a></div>
+                <div class="follows_image1"><a href="http://www.facebook.com/" target="_blank"><img src="images/fb_image.png" alt="" /></a></div>
+                <div class="follows_image1"><a href="http://twitter.com/" target="_blank"><img src="images/tw_image.png" alt="" /></a></div>
+            </div><!--rk_follows div end-->
+            <div class="rk_copyright"><!--rk_copyright div satrt-->
+            	All Rights Reserved 2015
+            </div><!--rk_copyright div end-->
+        </div><!--rk_footer div end-->
+    </div><!--rk_footermain div end-->
+</body>
+</html>
