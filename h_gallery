@@ -1,0 +1,56 @@
+<?php include_once('header.php');?>
+<link href="css/rk_style.css" rel="stylesheet" type="text/css" />
+
+	<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
+	
+	<script src="js/prototype.js" type="text/javascript"></script>
+	<script src="js/scriptaculous.js?load=effects,builder" type="text/javascript"></script>
+	<script src="js/lightbox.js" type="text/javascript"></script>
+	<script>
+	jQuery.noConflict();
+	jQuery(document).ready(function()
+	{
+		jQuery('#menu li a').removeClass('active');
+		jQuery('#menu #gallery a').addClass('active');
+		jQuery('body').animate({scrollTop :450}, 2000);
+	});
+</script>
+	<style type="text/css">
+		body{ color: #333; font: 13px 'Lucida Grande', Verdana, sans-serif;	}
+	</style>
+	
+    <div class="rk_maincontent"><!--rk_maincontent div start-->
+    	<div class="rk_centercontent"><!--rk_centercontent div start-->
+                 <div class="inner_aboutus"><!--inner_aboutus div start-->
+                	<div class="inneraboutus_title"><img src="images/leftarrow_image.png" alt="" align="left" /><span>GALLERY</span></div>
+                    <div class="inneraboutus_desc"><!--aboutus_desc div start-->
+                          <div class="aboutus_image1"><!--aboutus_image1 div satrt-->
+                                                   
+                                                    <div class="aboutusimage1_picture1"><a href="images/lightbox_image2.jpg" rel="lightbox[roadtrip]"><img src="images/lab_image2.png" alt="" /></a></div>
+                                                    <div class="aboutusimage1_picture1"><a href="images/lightbox_image3.jpg" rel="lightbox[roadtrip]"><img src="images/lab_image3.png" alt="" /></a></div>
+                                                    <div class="aboutusimage1_picture1"><a href="images/lightbox_image4.jpg" rel="lightbox[roadtrip]"><img src="images/lab_image4.png" alt="" /></a></div>
+                                                    <div class="aboutusimage1_picture1"><a href="images/lightbox_image5.jpg" rel="lightbox[roadtrip]"><img src="images/lab_image5.png" alt="" /></a></div>
+	                                                <div class="aboutusimage1_picture1"><a href="images/lightbox_image6.jpg" rel="lightbox[roadtrip]"><img src="images/lab_image6.png" alt="" /></a></div>
+                                                    <div class="aboutusimage1_picture1"><a href="images/lightbox_image7.jpg" rel="lightbox[roadtrip]"><img src="images/lab_image7.png" alt="" /></a></div>
+                                                    <div class="aboutusimage1_picture1"><a href="images/lightbox_image8.jpg" rel="lightbox[roadtrip]"><img src="images/lab_image8.png" alt="" /></a></div>
+                                                    <div class="aboutusimage1_picture1"><a href="images/lightbox_image9.jpg" rel="lightbox[roadtrip]"><img src="images/lab_image9.png" alt="" /></a></div>
+                                                    
+                                                  
+                                                    
+                                                    <div class="aboutusimage1_picture1"><a href="images/lightbox_image15.jpg" rel="lightbox[roadtrip]"><img src="images/pro_image1.png" alt="" /></a></div>
+                                                    <div class="aboutusimage1_picture1"><a href="images/lightbox_image16.jpg" rel="lightbox[roadtrip]"><img src="images/pro_image2.png" alt="" /></a></div>
+                                                    <div class="aboutusimage1_picture1"><a href="images/lightbox_image17.jpg" rel="lightbox[roadtrip]"><img src="images/pro_image3.png" alt="" /></a></div>
+                                                    <div class="aboutusimage1_picture1"><a href="images/lightbox_image18.jpg" rel="lightbox[roadtrip]"><img src="images/pro_image4.png" alt="" /></a></div>
+                                                    
+                                                    
+                            </div><!--aboutus_image1 div end-->
+                    </div><!--aboutus_desc div end-->
+               
+                    </div><!--inner_aboutus div end-->
+           
+            <div class="clear"></div>
+        </div><!--rk_centercontent div end-->
+    <div class=" clear"></div>
+    </div><!--rk_maincontent div end-->
+   <?php
+	include_once('footer.php');?>
