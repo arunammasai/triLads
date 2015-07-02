@@ -81,28 +81,29 @@ if (isset($_POST['ExecuteBillRun']))
 		//Fetch the rates and store it as a hash map
 		$rates = array();
 		$ratesTier = array();
+		$invoice = array();
 		$RatesSql = "Select TierStartValue, TierEndValue, Currency, RatePerUnit from rates order by 2 desc " ;
 		if($RatesCsr = mysqli_query($dbc, $RatesSql)){
 			while($lRates = mysqli_fetch_assoc($RatesCsr)){
 				$rates[$lRates['Currency']][$lRates['TierStartValue']] = $lRates['RatePerUnit'];
 				if(isset($ratesTier[$lRates['Currency']])){
-					array_push($ratesTier[$lRates['Currency']],$lRates['TierEndValue']);
+					array_push($ratesTier[$lRates['Currency']],$lRates['TierStartValue']);
                 }else {
-	                $ratesTier[$lRates['Currency']]= array($lRates['TierEndValue']);
+	                $ratesTier[$lRates['Currency']]= array($lRates['TierStartValue']);
                 }
 			}
 		}else{
 			echo "No Rates available <br>";
 		}
 		
-		//print_r($rates); print_r($ratesTier);
+		
         while($lCustForBillRun = mysqli_fetch_assoc($CustsForBillRunCsr))
         {
 			echo "EquipmentId" . $lCustForBillRun['equipmentId'] . "::::";
 			$MeterId = $lCustForBillRun['equipmentId'];
 			echo "Last Bill Date" . $lCustForBillRun['LastBillDate'] . "::";
 			$LastBillDate = $lCustForBillRun['LastBillDate'];
-            $NEStageSQL = "SELECT Meter_id, extract(YEAR_MONTH from StartDate) StartDate, extract(year_month from EndDate) EndDate, units_consumed 
+            $NEStageSQL = "SELECT Meter_id, extract(YEAR_MONTH from StartDate) StartDate, extract(year_month from EndDate) EndDate, sum(units_consumed)  units_consumed
 			                 FROM ne_stage 
 							WHERE Meter_id = $MeterId
 							  AND str_to_date('$LastBillDate', '%Y-%m-%d') < StartDate
@@ -113,14 +114,15 @@ if (isset($_POST['ExecuteBillRun']))
 		    $NEStageCsr = mysqli_query($dbc, $NEStageSQL);
 			while($NEStageRow = mysqli_fetch_assoc($NEStageCsr))
 			{
-				//echo "Meter Id: " . $NEStageRow["Meter_id"];
-				//echo "Start Month: " . $NEStageRow["StartDate"];
-				//echo "End Month: " . $NEStageRow["EndDate"];
-				//echo "Units Consumed: " . $NEStageRow["units_consumed"];
+				/**echo "Meter Id: " . $NEStageRow["Meter_id"];
+				echo "Start Month: " . $NEStageRow["StartDate"];
+				echo "End Month: " . $NEStageRow["EndDate"];
+				echo "Units Consumed: " . $NEStageRow["units_consumed"]; **/
 				
 				// Use Units Consumed, fetch Rates, compare currency, store in NE and charge tables, create subtotals and generate invoice.
 				$conversionFlag = 0;
 				$currency = 'INR';
+				
 				if(isset($ratesTier[$lCustForBillRun['Currency']])){
 				   $currency = $lCustForBillRun['Currency'];	
 				}else{
@@ -131,21 +133,58 @@ if (isset($_POST['ExecuteBillRun']))
 				}
 				$charge = 0;
 				$consumption = $NEStageRow['units_consumed'];
+				//print_r($consumption); echo"<br>";
+				//echo "Currency::".$currency."<br>";
 				foreach ($ratesTier[$currency] as &$value){
+					//echo "Consumtion is ::". $consumption . "Value is ::". $value ."<br>";
 					if($consumption > $value){
-						$secondkey = $value+1;
-						$units = $consumption - $value;
+						$secondkey = $value;
+						if($value == 0){
+							$value = 1;
+						}
+						$units = $consumption - $value + 1;
 						$tempcharge = $units * $rates[$currency][$secondkey];
 						$charge = $charge + $tempcharge;
+						$consumption = $consumption - $units ;
+						//echo "SKEY::". $secondkey . "Rate::". $rates[$currency][$secondkey]."<br>";
+						
 					}
 				}
+				
 				if($conversionFlag == 1){
 					$charge = $charge * $currencyConversion['INR'][$lCustForBillRun['Currency']];
 				}
+								
 				$tax = $charge * (1/10);
+				$total = $charge + $tax ;
+				if(isset($invoice[$NEStageRow['Meter_id']]['Charge'])){
+				   $invoice[$NEStageRow['Meter_id']]['Charge'] += $charge;
+				   $invoice[$NEStageRow['Meter_id']]['Tax'] += $tax;
+				   $invoice[$NEStageRow['Meter_id']]['Total'] += $total;
+				}else{
+				   $invoice[$NEStageRow['Meter_id']]['Charge'] = $charge;
+				   $invoice[$NEStageRow['Meter_id']]['Tax'] = $tax;
+				   $invoice[$NEStageRow['Meter_id']]['Total'] = $total;
+				}
+				echo "<br>" .$lCustForBillRun['accountId']."<br>" .$NEStageRow['Meter_id']."<br>". $NEStageRow['units_consumed'] ."<br>".$charge."<br>" . $tax."<br>". $total ."<br>". $NEStageRow['StartDate'] ."<br>".$NEStageRow['EndDate'];
+				echo " <br>";
+				$accountid = $lCustForBillRun['accountId'];
+				$MeterId = $NEStageRow['Meter_id'];
+				$UnitsConsumed = $NEStageRow['units_consumed'];
+				$SDate = $NEStageRow['StartDate'].'01' ;
+				$EDate = $NEStageRow['EndDate'].'30';
+				//insert into Charge
+				$insertCharge = "INSERT INTO `Charge` (`AccountId`, `EquipmentId`, `Quantity`, `AmountBeforeTax`, `TaxPercentage`, `TaxAmount`,`TotalAmount`,
+								`StartDate`,`EndDate`) VALUES  ('$accountid','$MeterId','$UnitsConsumed','$charge',10,
+								'$tax','$total',STR_TO_DATE('$SDate', '%Y%m%d'),STR_TO_DATE('$EDate', '%Y%m%d'))" ;
+				$r = mysqli_query($dbc,$insertCharge);				
 			}	
-			echo $lCustForBillRun["accountId"];
-	        echo $lCustForBillRun["equipmentId"];
+			//echo $lCustForBillRun["accountId"];
+	        //echo $lCustForBillRun["equipmentId"];
+			$InvoiceAmount = $invoice[$MeterId]['Total'];
+			$insertInvoice = "insert into `invoice` (`InvoiceDate` ,`InvoiceAmount` ,`PaymentDueDate` ,`AccountId`) VALUES 
+							  (STR_TO_DATE('$EffDate', '%m/%d/%Y'),'$InvoiceAmount',date_add(str_to_date('$EffDate','%m/%d/%Y'),interval 15 day),'$accountid')";
+			$r = mysqli_query($dbc,$insertInvoice);				
         }
 	}
 	else
