@@ -1,0 +1,223 @@
+-- phpMyAdmin SQL Dump
+-- version 2.11.6
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Jul 02, 2015 at 10:44 PM
+-- Server version: 5.0.51
+-- PHP Version: 5.2.6
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `trilads_billing`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account`
+--
+
+CREATE TABLE `account` (
+  `AccountId` int(11) NOT NULL,
+  `TotalBal` decimal(10,6) NOT NULL,
+  `LastInvoiceId` int(11) NOT NULL,
+  `PrevBal` decimal(10,6) NOT NULL,
+  `RoundTo` int(11) NOT NULL,
+  PRIMARY KEY  (`AccountId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`AccountId`, `TotalBal`, `LastInvoiceId`, `PrevBal`, `RoundTo`) VALUES
+(4, '0.000000', 0, '0.000000', 0),
+(5, '0.000000', 0, '0.000000', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `charge`
+--
+
+CREATE TABLE `charge` (
+  `ChargeId` int(11) NOT NULL auto_increment,
+  `EventId` int(11) NOT NULL,
+  `AccountId` int(11) NOT NULL,
+  `AmountBeforeTax` decimal(10,6) NOT NULL,
+  `TaxPercentage` decimal(10,6) NOT NULL,
+  `TaxAmount` decimal(10,6) NOT NULL,
+  `TotalAmount` decimal(10,6) NOT NULL,
+  `InvoiceId` int(11) NOT NULL,
+  `StartDate` datetime NOT NULL,
+  `EndDate` datetime NOT NULL,
+  `Misc1` varchar(300) collate utf8_bin NOT NULL,
+  `Misc2` varchar(300) collate utf8_bin NOT NULL,
+  `Misc3` varchar(300) collate utf8_bin NOT NULL,
+  `Misc4` varchar(300) collate utf8_bin NOT NULL,
+  PRIMARY KEY  (`ChargeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `charge`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `currencies`
+--
+
+CREATE TABLE `currencies` (
+  `FromCurrency` varchar(3) collate utf8_bin NOT NULL,
+  `ToCurrency` varchar(3) collate utf8_bin NOT NULL,
+  `ExchangeRate` decimal(10,6) NOT NULL,
+  `StartDate` date NOT NULL,
+  `EndDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `currencies`
+--
+
+INSERT INTO `currencies` (`FromCurrency`, `ToCurrency`, `ExchangeRate`, `StartDate`, `EndDate`) VALUES
+('INR', 'USD', '64.650000', '2014-07-01', '9999-12-31'),
+('USD', 'INR', '0.015468', '2014-07-01', '9999-12-31'),
+('INR', 'GBR', '90.650000', '2014-07-01', '9999-12-31'),
+('GBR', 'INR', '0.011031', '2014-07-01', '9999-12-31'),
+('INR', 'EUR', '55.650000', '2014-07-01', '9999-12-31'),
+('EUR', 'INR', '0.017969', '2014-07-01', '9999-12-31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `Name` varchar(200) collate utf8_bin NOT NULL default 'Test',
+  `password` varchar(50) collate utf8_bin NOT NULL,
+  `AddressLine` varchar(300) collate utf8_bin NOT NULL default 'default line 1',
+  `AddressStreet` varchar(300) collate utf8_bin NOT NULL default 'default street',
+  `AddressCity` varchar(300) collate utf8_bin NOT NULL default 'default city',
+  `AddressState` varchar(300) collate utf8_bin NOT NULL default 'Default State',
+  `AddressPinCode` varchar(50) collate utf8_bin NOT NULL default 'default PinCode',
+  `Currency` varchar(3) collate utf8_bin NOT NULL default 'INR',
+  `StartDate` date NOT NULL,
+  `ActiveDate` date NOT NULL,
+  `EndDate` date NOT NULL,
+  `LastBillDate` date NOT NULL,
+  `Rounding` int(11) unsigned NOT NULL,
+  `Status` varchar(15) collate utf8_bin NOT NULL default 'Active',
+  `AccountId` int(11) NOT NULL auto_increment,
+  PRIMARY KEY  (`AccountId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`Name`, `password`, `AddressLine`, `AddressStreet`, `AddressCity`, `AddressState`, `AddressPinCode`, `Currency`, `StartDate`, `ActiveDate`, `EndDate`, `LastBillDate`, `Rounding`, `Status`, `AccountId`) VALUES
+('ananth', '', 'chennai', 'fgs', 'chennai', 'Tamilnadu', '600102', 'inr', '2015-07-09', '0000-00-00', '0000-00-00', '0000-00-00', 0, 'Active', 4),
+('ananth', '792fef441691aa41135a15c1478a5ee4', 'chennai', 'fgs', 'chennai', 'Tamilnadu', '600102', 'inr', '2015-07-08', '0000-00-00', '0000-00-00', '0000-00-00', 123, 'Active', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `equipment`
+--
+
+CREATE TABLE `equipment` (
+  `EquipmentId` int(11) NOT NULL auto_increment,
+  `AccountId` int(11) NOT NULL,
+  `EquipmentType` varchar(100) collate utf8_bin NOT NULL,
+  `InstanceId` int(11) NOT NULL,
+  `Status` varchar(20) collate utf8_bin NOT NULL default 'Active',
+  PRIMARY KEY  (`EquipmentId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `equipment`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event`
+--
+
+CREATE TABLE `event` (
+  `EventId` int(11) NOT NULL auto_increment,
+  `EquipmentId` int(11) NOT NULL,
+  `StartDate` datetime NOT NULL,
+  `EndDate` datetime NOT NULL,
+  `StartValue` decimal(10,6) NOT NULL,
+  `EndValue` decimal(10,6) NOT NULL,
+  `Misc1` varchar(300) collate utf8_bin NOT NULL,
+  `Misc2` varchar(300) collate utf8_bin NOT NULL,
+  `Misc3` varchar(300) collate utf8_bin NOT NULL,
+  `Misc4` varchar(300) collate utf8_bin NOT NULL,
+  PRIMARY KEY  (`EventId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `event`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoice`
+--
+
+CREATE TABLE `invoice` (
+  `InvoiceId` int(11) NOT NULL auto_increment,
+  `InvoicePages` blob NOT NULL,
+  `InvoiceDate` date NOT NULL,
+  `InvoiceAmount` decimal(10,6) NOT NULL,
+  `PaymentDueDate` date NOT NULL,
+  PRIMARY KEY  (`InvoiceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `invoice`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rates`
+--
+
+CREATE TABLE `rates` (
+  `RatePlan` varchar(20) collate utf8_bin NOT NULL default 'TEST',
+  `TierStartValue` int(11) NOT NULL,
+  `TierEndValue` int(11) NOT NULL,
+  `Currency` varchar(3) collate utf8_bin NOT NULL,
+  `RatePerUnit` decimal(10,6) NOT NULL,
+  `UOM` varchar(30) collate utf8_bin NOT NULL default 'WATTS',
+  `Misc1` varchar(300) collate utf8_bin NOT NULL,
+  `Misc2` varchar(300) collate utf8_bin NOT NULL,
+  `Misc3` varchar(300) collate utf8_bin NOT NULL,
+  `Misc4` varchar(300) collate utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `rates`
+--
+
+INSERT INTO `rates` (`RatePlan`, `TierStartValue`, `TierEndValue`, `Currency`, `RatePerUnit`, `UOM`, `Misc1`, `Misc2`, `Misc3`, `Misc4`) VALUES
+('TEST', 0, 300, 'INR', '1.250000', 'WATTS', '', '', '', ''),
+('TEST', 301, 600, 'INR', '1.750000', 'WATTS', '', '', '', ''),
+('TEST', 601, 1000, 'INR', '2.250000', 'WATTS', '', '', '', ''),
+('TEST', 1001, 99999999, 'INR', '2.750000', 'WATTS', '', '', '', ''),
+('TEST', 0, 300, 'USD', '1.250000', 'WATTS', '', '', '', ''),
+('TEST', 301, 600, 'USD', '1.750000', 'WATTS', '', '', '', ''),
+('TEST', 601, 1000, 'USD', '2.250000', 'WATTS', '', '', '', ''),
+('TEST', 1001, 99999999, 'USD', '2.750000', 'WATTS', '', '', '', '');
