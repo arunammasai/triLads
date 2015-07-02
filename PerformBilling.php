@@ -78,18 +78,27 @@ if (isset($_POST['ExecuteBillRun']))
         echo "Number of rows fetched" . mysqli_num_rows($CustsForBillRunCsr);
         while($lCustForBillRun = mysqli_fetch_assoc($CustsForBillRunCsr))
         {
-            $NEStageSQL = "SELECT Meter_id, extract(YEAR_MONTH from StartDate), extract(year_month from EndDate), units_consumed 
+			echo "EquipmentId" . $lCustForBillRun['equipmentId'];
+			$MeterId = $lCustForBillRun['equipmentId'];
+			echo "Last Bill Date" . $lCustForBillRun['LastBillDate'] . "..";
+			$LastBillDate = $lCustForBillRun['LastBillDate'];
+            $NEStageSQL = "SELECT Meter_id, extract(YEAR_MONTH from StartDate) StartDate, extract(year_month from EndDate) EndDate, units_consumed 
 			                 FROM ne_stage 
-							WHERE Meter_id = $lCustForBillRun['equipmentId']
-							  AND str_to_date($lCustForBillRun['LastBillDate'], '%m/%d/%Y') < StartDate
+							WHERE Meter_id = $MeterId
+							  AND str_to_date('$LastBillDate', '%Y-%m-%d') < StartDate
 							  AND STR_TO_DATE('$EffDate', '%m/%d/%Y') > EndDate
 							GROUP BY extract(YEAR_MONTH from StartDate), extract(year_month from EndDate) 
-							ORDER BY StartDate";
+							ORDER BY Meter_Id, StartDate";
 							
 		    $NEStageCsr = mysqli_query($dbc, $NEStageSQL);
 			while($NEStageRow = mysqli_fetch_assoc($NEStageCsr))
 			{
-				$MeterId = $NEStageRow["Meter_id"];
+				echo "Meter Id: " . $NEStageRow["Meter_id"];
+				echo "Start Month: " . $NEStageRow["StartDate"];
+				echo "End Month: " . $NEStageRow["EndDate"];
+				echo "Units Consumed: " . $NEStageRow["units_consumed"];
+				
+				// Use Units Consumed, fetch Rates, compare currency, store in NE and charge tables, create subtotals and generate invoice.
 				
 			}	
 			echo $lCustForBillRun["accountId"];
