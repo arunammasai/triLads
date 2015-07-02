@@ -1,0 +1,64 @@
+<style>
+tr, td {
+border : 1px solid black;
+}
+</style>
+<table style="border: 2px solid black;">
+<?php
+
+if (isset($_POST['submitBut']))
+{
+echo $name= $_FILES["csv_file"]["name"];
+
+move_uploaded_file($_FILES["csv_file"]["tmp_name"],"csv/" . $_FILES["csv_file"]["name"]);
+
+$file = fopen("csv/".$name,"r");
+$i = 1;
+	while(! feof($file))
+	{
+		$row	=	fgetcsv($file);
+		if($i == 2)
+		{
+			echo "<tr style='font-weight : bold;'>
+			<td>".$row[0]."</td>
+			<td>".$row[1]."</td>
+			<td>".$row[2]."</td>
+			<td>".$row[3]."</td>
+			<td>".$row[4]."</td>
+			<td>".$row[5]."</td>
+			<td>".$row[6]."</td>
+			<td>".$row[7]."</td>
+			<td>".$row[8]."</td>
+			<td>".$row[9]."</td>
+			<td>".$row[10]."</td>
+			</tr>";
+		}
+		else
+		{
+			echo "<tr>
+			<td>".$row[0]."</td>
+			<td>".$row[1]."</td>
+			<td>".$row[2]."</td>
+			<td>".$row[3]."</td>
+			<td>".$row[4]."</td>
+			<td>".$row[5]."</td>
+			<td>".$row[6]."</td>
+			<td>".$row[7]."</td>
+			<td>".$row[8]."</td>
+			<td>".$row[9]."</td>
+			<td>".$row[10]."</td>
+			</tr>";
+		}
+		
+		$i++;
+	}
+	
+	fclose($file);
+}
+?>
+</table>
+
+<form method="post" action="extractcsv.php" enctype="multipart/form-data">
+	<input type="file" name="csv_file" id="csv_file" required />
+	<input type="submit" name="submitBut" class="sub_button" value="submit"/>
+</form>
