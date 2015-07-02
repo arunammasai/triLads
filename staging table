@@ -6,3 +6,16 @@ CREATE TABLE IF NOT EXISTS `ne_stage` (
   `meter_end` int(11) NOT NULL,
   `units_consumed` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+('12345',STR_TO_DATE('6/30/15 5:00 AM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('6/30/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'22','37','15');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+('12345',STR_TO_DATE('6/23/15 5:00 PM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('6/24/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'12','22','10');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+('12345',STR_TO_DATE('7/2/15 1:00 PM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('7/02/15 4:55 PM', '%m/%d/%Y %h:%i %p'),'37','50','13');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+('12346',STR_TO_DATE('6/30/15 5:00 AM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('6/30/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'12','22','10');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+('12346',STR_TO_DATE('7/11/15 5:00 AM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('7/11/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'22','42','20');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+('12347',STR_TO_DATE('6/30/15 5:00 AM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('6/30/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'12','22','10');
