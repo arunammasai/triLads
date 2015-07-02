@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>RK_CLIENTS</title>
+<link href="css/rk_style.css" rel="stylesheet" type="text/css" />
+
+	<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
+	
+	<script src="js/prototype.js" type="text/javascript"></script>
+	<script src="js/scriptaculous.js?load=effects,builder" type="text/javascript"></script>
+	<script src="js/lightbox.js" type="text/javascript"></script>
+
+	<style type="text/css">
+		body{ color: #333; font: 13px 'Lucida Grande', Verdana, sans-serif;	}
+	</style>
+
+
+</head>
+
+<body>
+	<div class="header_main"><!--header_main div satrt-->
+    	<div class="rk_header"><!--rk_header div satrt-->
+        	<div class="rk_headtop"><!--rk_headtop div satrt-->
+        		<div class="rk_logo"><a href="index.html"><img src="images/rk_logo.png" alt=""   /></a></div>
+            </div><!--rk_headtop div end-->
+            <div class="clear"></div>
+            <div class="rk_headbottom"><!--rk_headbottom div start-->
+            	<div class="main_menu"><!--main_menu div satrt-->
+                	<ul>                                                                             
+                    	<li><a href="index.html">HOME PAGE</a></li>
+                        <li><a href="aboutus.html">ABOUT US </a></li>
+                        <li><a href="services.html">SERVICES</a></li>
+                         <li><a href="gallery.html" >GALLERY</a></li>
+                        <li><a class="active" href="clients.html">CLIENTS </a></li>
+                        <li><a href="contactus.html">CONTACT US </a></li>
+                    </ul>
+                </div><!--main_menu div end-->
+            </div><!--rk_headbottom div end-->
+        </div><!--rk_header div end-->
+        <div class="clear"></div>
+    </div><!--header_main div end-->
+    <div class="rk_maincontent"><!--rk_maincontent div start-->
+    	<div class="rk_centercontent"><!--rk_centercontent div start-->
+                 <div class="inner_services"><!--inner_services div start-->
+                	<div class="in_servicestitle"><img src="images/leftarrow_image.png" alt="" align="left" /><span>Clients</span></div>
+                    <div class="in_services_desc"><!--in_services_desc div start-->
+                    	<p>
+                        		
+                                <div class="scope_desc"><!--scope_desc div start-->
+                                                 <div class="scope_title">Clients</div>
+                                                  <div class="elec_category">
+                                                  	<ul>
+                                                  	<li><strong>National institute of ocean technology (NIOT)</strong>-Chennai</li>
+                                                    <li><strong>Bharat Sanchar Nigam Limited (BSNL)</strong>- Chennai.</li>
+                                                    <li><strong>Airport Authority of India (AAI)</strong>-Meenampakkam.</li>
+                                                    <li><strong>Ascendas IT Park</strong>-Tharamani, Mahendra City.</li>
+                                                   	<li><strong>Vibro Power Generators</strong>- Chennai.</li>
+                                                    <li><strong>Vassom Power Solutions</strong>- Chennai. </li>
+                                                    <li><strong>Alliance Services</strong>-Chennai.</li>
+                                                    <li><strong>Rockworth Systems Furniture</strong>-Sricity Tada.</li>
+                                                    <li><strong>Sunbeam Genset</strong>- Chennai.</li>
+                                                    <li><strong>Supernova Engg.ltd</strong>- Ahmadabad.</li>
+                                                    <li><strong>Sterling and Wilson Power Generators (p) ltd</strong>- Chennai.</li>
+                                                    <li><strong>NSK-ABC Bearing ltd</strong>-Oragadam.</li>
+                                                    <li><strong>Cryolor Asia Pacific (p) ltd</strong>-Thozupedu.</li>
+                                                    <li><strong>Coastal Energy Thermal Power Ltd</strong>-Thoothukudi.</li>
+                                                    <li><strong>Dharshini Engineering (p) ltd</strong>-Maraimalai nagar.</li>
+                                                    <li><strong>Sanmina Technology .India</strong>-Oragadam.</li>
+                                                    <li><strong>Madras University</strong>-Chennai.</li>
+                                                    <li><strong>ETA Engineering Pvt.Ltd</strong>-Chennai.</li>
+                                                    <li><strong>Hotel Kyes (Kattima groups)</strong>-Thiruvanmiyur.</li>
+                                                    <li><strong>Motorola Chennai</strong>-Sunguvarchatram.</li>         
+                                                   </ul>
+												</div>
+                                                
+                                                
+                                                   <div class="aboutus_imagetitle">Gallery</div>
+                                                  <div class="clientimage1_picture1"><a href="images/lightbox_image10.jpg" rel="lightbox[roadtrip]"><img src="images/clt_image1.png" alt="" /></a></div>
+                                                    <div class="clientimage1_picture1"><a href="images/lightbox_image11.jpg" rel="lightbox[roadtrip]"><img src="images/clt_image2.png" alt="" /></a></div>
+                                                    <div class="clientimage1_picture1"><a href="images/lightbox_image12.jpg" rel="lightbox[roadtrip]"><img src="images/clt_image3.png" alt="" /></a></div>
+                                                    <div class="clientimage1_picture1"><a href="images/lightbox_image13.jpg" rel="lightbox[roadtrip]"><img src="images/clt_image4.png" alt="" /></a></div>
+                                                    <div class="clientimage1_picture1"><a href="images/lightbox_image14.jpg" rel="lightbox[roadtrip]"><img src="images/clt_image5.png" alt="" /></a></div>
+                                 </div><!--scope_desc div end-->
+                        </p>
+                    </div><!--in_services_desc div end-->
+               
+                    </div><!--inner_services div end-->
+           
+            <div class="clear"></div>
+        </div><!--rk_centercontent div end-->
+    <div class=" clear"></div>
+    </div><!--rk_maincontent div end-->
+    <div class="rk_footermain"><!--rk_footermain div satrt-->
+    	<div class="rk_footer"><!--rk_footer div start-->
+        	<div class="rk_footer_menu"><!--rk_footer_menu	 div satrt-->
+            	<ul>      
+                	<li><a href="index.html">HOME</a>|</li>
+                        <li><a href="aboutus.html">ABOUT US </a>|</li>
+                        <li><a href="services.html">SERVICES</a>|</li>
+                         <li><a href="gallery.html" >GALLERY</a>|</li>
+                        <li><a class="active" href="clients.html">CLIENTS </a>|</li>
+                        <li><a href="contactus.html">CONTACT US </a></li>
+                </ul>
+            </div><!--rk_footer_menu div  end-->
+            <div class="rk_follows"><!--rk_follows div start-->
+            	<div class="follows_image1"><a href="http://www.linkedin.com/" target="_blank"><img src="images/li_image.png" alt="" /></a></div>
+                <div class="follows_image1"><a href="http://www.facebook.com/" target="_blank"><img src="images/fb_image.png" alt="" /></a></div>
+                <div class="follows_image1"><a href="http://twitter.com/" target="_blank"><img src="images/tw_image.png" alt="" /></a></div>
+            </div><!--rk_follows div end-->
+            <div class="rk_copyright"><!--rk_copyright div satrt-->
+            	All Rights Reserved 2012  |  Designed by <a href="http://orangelab.in/" target="_blank"><span>Orange</span> Lab</a>
+            </div><!--rk_copyright div end-->
+        </div><!--rk_footer div end-->
+    </div><!--rk_footermain div end-->
+</body>
+</html>
