@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Add Customer</title>
+<meta charset="UTF-8" />
+<meta name="Designer" content="PremiumPixels.com">
+<meta name="Author" content="$hekh@r d-Ziner, CSSJUNTION.com">
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/structure.css">
+
+<meta charset="utf-8">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  
+  $(function() {
+    $( "#datepicker1" ).datepicker();
+  });
+  
+  $(function() {
+    $( "#datepicker2" ).datepicker();
+  });
+  
+  $(function() {
+    $( "#datepicker3" ).datepicker();
+  });
+  </script>
+
+
+
+
+</head>
+
+<body>
+
+<form class="custTable" action="addCustomer.php" method ="post" name="custDetails">
+<table style="border: 1px solid black" align="center" class=""> 
+<tr><td class="cust">Customer Name </td><td class="cust"><input type="text" name="customername" tabindex="1" required></td></tr>
+<tr><td class="cust">Address Line</td><td class="cust"><input type="text" name="addressline" tabindex="1"  required></td></tr>
+<tr><td class="cust">Address Street</td><td class="cust"><input type="text" name="addressstreet" tabindex="1"  required></td></tr>
+<tr><td class="cust">Address City</td><td class="cust"><input type="text" name="addresscity" tabindex="1"   required></td></tr>
+<tr><td class="cust">Address State</td><td class="cust"><input type="text" name="addressstate" tabindex="1"  required></td></tr>
+<tr><td class="cust">Address Pincode</td><td class="cust"><input type="text" name="addresspincode" tabindex="1"  required></td></tr>
+<tr><td class="cust">Currency </td><td class="cust"><input type="text" name="currency" tabindex="1" required   ></td></tr>
+<tr><td class="cust">Start Date</td><td class="cust"><input type="text" name="startdate" id="datepicker" tabindex="1" required></td></tr>
+<tr><td class="cust">Rounding</td><td class="cust"><input type="text" name="rounding" tabindex="1" readonly></td></tr>
+<!--tr><td class="cust">Account Balance</td><td class="cust"><input type="text" name="accountbalance" tabindex="1" required></td></tr-->
+<tr><td class="cust"><input type="submit" name="submitBut" value="Add">
+<input type="submit" name="submitView" value="View">
+</td><td class="cust"><input type="reset" name="reset" value="Reset">
+<input type="submit" name="submit" value="Update"></td></tr>
+</table>
+</form>
+<?php
+if (isset($_POST['submitBut'])) {
+	
+//echo "Customer Name :.$customername.$addressline.$addressstreet.$addresscity.$addressstate.$addresspincode.$currency.
+//$startdate.$activationdate.$enddate.$lastbilldate.$status.$accountid.$accountbalance";
+
+$dbc=mysqli_connect('localhost','root','root','triLads_Billing');
+$customername = $_POST["customername"];
+$addressline = $_POST["addressline"];
+$addressstreet = $_POST["addressstreet"];
+$addresscity = $_POST["addresscity"];
+$addressstate = $_POST["addressstate"];
+$addresspincode = $_POST["addresspincode"];
+$currency = $_POST["currency"];
+$startdate = $_POST["startdate"];
+
+$sql = "INSERT INTO customer (Name,AddressLine,AddressStreet,AddressCity,AddressState,AddressPinCode,Currency,StartDate) VALUES
+('$customername','$addressline','$addressstreet','$addresscity','$addressstate','$addresspincode',
+'$currency',STR_TO_DATE('$startdate', '%m/%d/%Y'))";
+$r = mysqli_query($dbc,$sql);
+if(mysqli_affected_rows($dbc) ==1){
+ echo "<script>window.alert('Customer Added ...')</script>";
+}
+else
+{	
+ echo "Error is :".mysqli_connect_error();
+ echo "Error is :".mysqli_connect_errno();
+}
+mysqli_close($dbc);
+}
+
+?>
+<footer id="main">
+  <a href="http://wwww.cssjunction.com">Simple Login Form (HTML5/CSS3 Coded) by CSS Junction</a> | <a href="http://www.premiumpixels.com">PSD by Premium Pixels</a>
+</footer>
+</body>
+</html>
