@@ -1,0 +1,31 @@
+<?php
+$serverName="localhost";
+$username ="root";
+$password="root";
+
+$connection = mysql_connect($serverName,$username,$password);
+$database_name = "testdb";
+$qry ="select employee_name from emplyee";
+if(!$connection)
+{
+	die("Server connection Failed:".mysql_error);
+}
+
+if(mysql_select_db($database_name)){
+	echo "dada base selected<BR>";
+}
+
+$result = mysql_query($qry,$connection);
+
+if(!$result){
+echo "Error is :".mysql_error();
+}
+
+while($row = mysql_fetch_assoc($result)){
+	echo $row['employee_name']."<BR>";
+}
+mysql_free_result($result);
+
+echo "Connection Established Successfully...";
+//echo "Hello This is Arun";
+?>
