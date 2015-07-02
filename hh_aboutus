@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>RK_ABOUTUS</title>
+<link href="css/rk_style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="header_main"><!--header_main div satrt-->
+    	<div class="rk_header"><!--rk_header div satrt-->
+        	<div class="rk_headtop"><!--rk_headtop div satrt-->
+        		<div class="rk_logo"><a href="index.html"><img src="images/rk_logo.png" alt=""   /></a></div>
+            </div><!--rk_headtop div end-->
+            <div class="clear"></div>
+            <div class="rk_headbottom"><!--rk_headbottom div start-->
+            	<div class="main_menu"><!--main_menu div satrt-->
+                	<ul>                                                                             
+                    	<li><a href="index.html">HOME PAGE</a></li>
+                        <li><a href="aboutus.html" class="active">ABOUT US </a></li>
+                        <li><a href="services.html">SERVICES</a></li>
+                        <li><a href="gallery.html" >GALLERY</a></li>
+                        <li><a href="clients.html">CLIENTS </a></li>
+                        <li><a href="contactus.html">CONTACT US </a></li>
+                    </ul>
+                </div><!--main_menu div end-->
+            </div><!--rk_headbottom div end-->
+        </div><!--rk_header div end-->
+        <div class="clear"></div>
+    </div><!--header_main div end-->
+    <div class="rk_maincontent"><!--rk_maincontent div start-->
+    	<div class="rk_centercontent"><!--rk_centercontent div start-->
+                 <div class="inner_aboutus"><!--inner_aboutus div start-->
+                	<div class="inneraboutus_title"><img src="images/leftarrow_image.png" alt="" align="left" /><span>About Us</span></div>
+                    <div class="inneraboutus_desc"><!--aboutus_desc div start-->
+                    <p>
+                    	<div class="intro_page"><!--intro_page div satrt--->
+                           <b> R K power Enterprises</b> have pleasure to introducing ourselves as one of the Service 
+                           engineering leading contractors for the past 10 years. <br />
+                           Our main objective is to achieve the optimal Technology Progress in
+                           <b>Electrical & Mechanical Data Work</b> activities. We are providing the most possible flexibility and reliability in customer service<br />
+                           By proving it we attached the satisfied customers list for your reference. We now request you to register us in your vendor list and look forward to receive your valuable enquiries Thank you in advance and assuring you of our best services at all times. <br />
+                           Having a sound background in electrical contract work and since we work all major industries in and around <b>Tamilnadu, Andhrapradesh & Karnataka.</b><br />
+                           We are successfully by competent engineers, their services were utilized by <b>the state electricity board and TNEB in their CEIG license works</b>. We have fully furnished office having facility for preparation of drawing, being placed closed to the Guindy.<br />
+                           We undertake to the supply, installation & commissioning of indoor and outdoor substation transformers, cabling, and circuit breakers lightning arrestor and multi storied building & commercial complex, and apartment lighting works. As this is a dangerous task to our life, <b>we give first priority to safety for our labours.</b><br />
+                           In addition to the company is manufacturing and supplying of LT switchboard, PCC, PLC, drive, instrumentation control panels, cubical type motor control centers and busduct for MV installation.<b> We have our factory at Pondicherry for  manufacturing of MS, SS structural fabrication</b> works.<br />
+                           Hence, we were applying to you solemnly to include our name also in your shortlist of electrical, mechanical structural, interior decorators etc., and give us an opportunity to proves and to substantive our valued customers.
+</div><!--intro_page div end-->
+                    </p>
+                    
+                    		 
+                    </div><!--aboutus_desc div end-->
+               
+                    </div><!--inner_aboutus div end-->
+           
+            <div class="clear"></div>
+        </div><!--rk_centercontent div end-->
+    <div class=" clear"></div>
+    </div><!--rk_maincontent div end-->
+    <div class="rk_footermain"><!--rk_footermain div satrt-->
+    	<div class="rk_footer"><!--rk_footer div start-->
+        	<div class="rk_footer_menu"><!--rk_footer_menu	 div satrt-->
+            	<ul>      
+                    <li><a href="index.html">HOME</a>|</li>
+                    <li><a class="active" href="aboutus.html">ABOUT US </a>|</li>
+                    <li><a href="services.html">SERVICES</a>|</li>
+                     <li><a href="gallery.html" >GALLERY</a>|</li>
+                   	<li><a href="clients.html">CLIENTS </a>|</li>
+                    <li><a href="contactus.html">CONTACT US </a></li>
+                </ul>
+            </div><!--rk_footer_menu div  end-->
+            <div class="rk_follows"><!--rk_follows div start-->
+            	<div class="follows_image1"><a href="http://www.linkedin.com/" target="_blank"><img src="images/li_image.png" alt="" /></a></div>
+                <div class="follows_image1"><a href="http://www.facebook.com/" target="_blank"><img src="images/fb_image.png" alt="" /></a></div>
+                <div class="follows_image1"><a href="http://twitter.com/" target="_blank"><img src="images/tw_image.png" alt="" /></a></div>
+            </div><!--rk_follows div end-->
+            <div class="rk_copyright"><!--rk_copyright div satrt-->
+            	All Rights Reserved 2012  |  Designed by <a href="http://orangelab.in/" target="_blank"><span>Orange</span> Lab</a>
+            </div><!--rk_copyright div end-->
+        </div><!--rk_footer div end-->
+    </div><!--rk_footermain div end-->
+</body>
+</html>
