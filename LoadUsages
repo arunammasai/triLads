@@ -1,0 +1,60 @@
+<?php
+//  Include PHPExcel_IOFactory
+include 'D:\xampp\htdocs\phpexcel\Classes\PHPExcel\IOFactory.php';
+
+$inputFileName = 'D:\sample.xls';
+
+//  Read your Excel workbook
+try {
+    $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+    $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+    $objPHPExcel = $objReader->load($inputFileName);
+} catch(Exception $e) {
+    die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+}
+
+//  Get worksheet dimensions
+$sheet = $objPHPExcel->getSheet(0); 
+$highestRow = $sheet->getHighestRow(); 
+$highestColumn = $sheet->getHighestColumn();
+$dbc=mysqli_connect('localhost','root','root','triLads_Billing');
+//  Loop through each row of the worksheet in turn
+// Starting from 2 to ignore the header
+$error = 0 ;
+for ($row = 2; $row <= $highestRow; $row++){ 
+    //  Read a row of data into an array
+    $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
+                                    NULL,
+                                    TRUE,
+                                    FALSE);
+	$smartMeterId = $rowData[0][0];
+	$startTime = excel_date($rowData[0][1]);
+	$meterStart = $rowData[0][2];
+	$endTime = excel_date($rowData[0][3]);
+	$meterEnd = $rowData[0][4];
+	$units = $meterEnd - $meterStart ;
+    
+	$sql = "INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+           ('$smartMeterId',STR_TO_DATE('$startTime', '%Y-%m-%d %H:%i:%s'),STR_TO_DATE('$endTime', '%Y-%m-%d %H:%i:%s'),'$meterStart','$meterEnd','$units')";
+    $r = mysqli_query($dbc,$sql);
+	
+    if(mysqli_affected_rows($dbc) ==1){
+       //echo "<script>window.alert('Customer Added ...')</script>";
+    }else{	
+       echo "Error is :".mysqli_connect_error();
+       echo "Error is :".mysqli_connect_errno();
+       $error = 1;
+    }   
+
+}
+if($error == 1){
+	echo "There are errors in Usage Load. Please verify them <br>" ;
+}else{
+	echo "Usage Processing successful. Proceed with Billrun tasks <br>" ;
+}
+mysqli_close($dbc);	
+function excel_date($xl_date)
+{
+return $displayDate = PHPExcel_Style_NumberFormat::toFormattedString($xl_date, 'YYYY-MM-DD hh:mm:ss');
+}
+?>
