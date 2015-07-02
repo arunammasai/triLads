@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS `ne_stage` (
+  `Meter_id` int(20) NOT NULL,
+  `StartDate` datetime NOT NULL,
+  `endDate` datetime NOT NULL,
+  `meter_start` int(11) NOT NULL,
+  `meter_end` int(11) NOT NULL,
+  `units_consumed` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
