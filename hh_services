@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>RK_SERVICES</title>
+<link href="css/rk_style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="header_main"><!--header_main div satrt-->
+    	<div class="rk_header"><!--rk_header div satrt-->
+        	<div class="rk_headtop"><!--rk_headtop div satrt-->
+        		<div class="rk_logo"><a href="index.html"><img src="images/rk_logo.png" alt=""   /></a></div>
+            </div><!--rk_headtop div end-->
+            <div class="clear"></div>
+            <div class="rk_headbottom"><!--rk_headbottom div start-->
+            	<div class="main_menu"><!--main_menu div satrt-->
+                	<ul>                                                                             
+                    	<li><a href="index.html">HOME PAGE</a></li>
+                        <li><a href="aboutus.html">ABOUT US </a></li>
+                        <li><a class="active"  href="services.html">SERVICES</a></li>
+                        <li><a href="gallery.html">GALLERY</a></li>
+                        <li><a href="clients.html">CLIENTS </a></li>
+                        <li><a href="contactus.html">CONTACT US </a></li>
+                    </ul>
+                </div><!--main_menu div end-->
+            </div><!--rk_headbottom div end-->
+        </div><!--rk_header div end-->
+        <div class="clear"></div>
+    </div><!--header_main div end-->
+    <div class="rk_maincontent"><!--rk_maincontent div start-->
+    	<div class="rk_centercontent"><!--rk_centercontent div start-->
+                 <div class="inner_services"><!--inner_services div start-->
+                	<div class="in_servicestitle"><img src="images/leftarrow_image.png" alt="" align="left" /><span>Services</span></div>
+                    <div class="in_services_desc"><!--in_services_desc div start-->
+                    	<p>
+                        		
+                                <div class="scope_desc"><!--scope_desc div start-->
+                                	<div class="nature_text"><div class="title_naturetext">Nature of works</div></div>
+                                	<div class="scope_title">Electrical Works</div>
+                                    		
+                                            <div class="scope_category">
+                                            	<ul>
+                                                 	<li>Earthing, Cable laying and Termination.2 to 8 pole structural and related cabling work.</li>
+                                                    <li>2to 8 pole structural and related cabling work.</li>
+                                                    <li>Lightings for office buildings, residential & commercial complexes and factories</li>
+                                                    <li>Bus-duct, MV Panels, PCC, MCC, LV switchboard, Control panel fuse/ APFC,AMF,MCCB & related cablings, cable trays and streetlight poles.</li>
+                                                    <li>Electrical works of HT & LT. </li>
+                                                   
+                                                  </ul>
+                                            </div>
+                                            <div class="scope_title"> Mechanical Works</div>
+                                                <div class="scope_category">
+                                                	<ul>
+                                                        <li>MS,SS Structural fabrication works</li>
+                                                        <li>DG set erection with silencer and exhaust pipe fabrication works upto 16".We can Supply all kinds of DG Set brands namely Kirloskar,Perkines,Cummins,Mahindra .</li>
+                                                    </ul>
+                                                    
+                                           		 </div>
+                                                
+                                                <div class="scope_title"> Engineering services</div>
+                                                <div class="scope_category">
+                                                	<ul>
+                                                        <li>Single line Diagrams</li>
+                                                        <li>Schematic diagrams</li>
+                                                        <li>Layout drawings,Design,Drafting & approved</li>
+                                                    </ul>
+                                           		 </div>
+                                                 <div class="scope_title">Interior Works</div>
+                                                 
+                                                <div class="scope_category">
+                                                	<ul>
+                                                        <li>Data works</li>
+                                                        <li>Fire fitting pipe line & alarms</li>
+                                                        <li>CCTV works</li>
+                                                        <li>False ceilings works</li>
+                                                        <li>Armstrong cabining works</li>
+                                                        
+                                                    </ul>
+                                           		 </div>
+                                                 <div class="scope_title">Maintenance</div>
+                                                 <div class="scope_category">
+                                                	<ul>
+                                                        <li>Commercial complex, Industries, Civil construction & Painting works</li>
+                                                        <li>IT Parks</li>
+                                                    </ul>
+                                                 </div>
+                                                 <div class="nature_text"><div class="title_naturetext">Executed projects</div></div>
+                                                 <div class="scope_title">Electrical Work:</div>
+                                                 <div class="elec_category">
+                                                 <ul>
+                                                 <li>Internal and external erection of earthing and cabling work. Ascendas IT Park, Tharamani and Mahindra City. </li>
+                                                 <li>Lighting arrestor, internal cable laying, external earth bit work. Motorola Ltd, Sunguvar Chathiram.</li>
+                                                 <li>8 pole structure, transformer and panel erection. Coastal Energy Thermal Power, Thoothukudi. </li>
+                                                 <li> Ashlok earthing and plate earthing cable tray fabrication work. Sanmina Technology India, Oragadam. </li>
+                                                 <li>DG incoming panel Bus duct cable laying work. Hi-Tech city, Hyderabad.</li>
+												 <li>Supply of APFCR and AMF panel cable laying work. Dharshini Engineering Pvt Ltd, Maraimalai Nagar.</li>
+                                                 <li> Cable laying and termination & Modification for HT transformer bus duct work. Momentive Performance, Oragadam.</li>
+                                                 <li>620kva DG set Erection, Earthing & Internal, External Cabling Work. Dawood Solver Minds at SiruSeri, Chennai.</li>
+                                               <li> Internal and external erection of earthing and cabling work. Ascendas IT Park, Tharamani and Mahindra City.</li>
+                                               
+                                               </ul>  
+                                               </div>
+                                               <div class="scope_title">Mechanical Work:</div>
+                                               <div class="elec_category">
+                                               	<ul>
+                                                	<li>5 KVA upto 2500KVA DG set Erection, Structural Fabrication of exhaust pipe work. 
+D.G.erection, cabling, earthing and fabrication structural work. Keyes (Kattima groups), Trivanmiyur.</li>
+
+                                                	<li>600kva DG set Erection & Exhaust pipe & structural fabrication work with Earthing & Cabling work. Rockworth System Furniture, SriCity, TADA.</li>
+                                                
+                                                
+                                               <li>Paikane DG, Perkins 1500kva*8no D.G set, 16inch dia exhaust MS pipe Fabrication for 1000mtrs, Fabrication structural work, and earthing work. Classic Market Mall, Velachery, Chennai.</li>
+                                              
+
+                                                </ul></div>
+                                                 <div class="scope_title">Interior Work:</div>
+                                                  <div class="elec_category">
+                                                  	<ul>
+                                                  	<li>Internal & external UPS and raw power Armstrong cabining and wiring and network A M C work. National Institute of Ocean Technology, Pallikaranai, Chennai.</li>
+
+
+												<li>Internal and external electrical cabling, plug point and lightening work. Madras University, Chennai.</li>
+
+
+												 <li>  Laying of Cable, Termination and plug points wiring work. Vijaya Electrical, Chennai.</li>
+                                                   </ul>
+</div>
+                                                 
+                                 </div><!--scope_desc div end-->
+                        </p>
+                    </div><!--in_services_desc div end-->
+               
+                    </div><!--inner_services div end-->
+           
+            <div class="clear"></div>
+        </div><!--rk_centercontent div end-->
+    <div class=" clear"></div>
+    </div><!--rk_maincontent div end-->
+    <div class="rk_footermain"><!--rk_footermain div satrt-->
+    	<div class="rk_footer"><!--rk_footer div start-->
+        	<div class="rk_footer_menu"><!--rk_footer_menu	 div satrt-->
+            	<ul>      
+                    	<li><a href="index.html">HOME</a>|</li>
+                        <li><a href="aboutus.html">ABOUT US </a>|</li>
+                        <li><a class="active"  href="services.html">SERVICES</a>|</li>
+                         <li><a href="gallery.html" >GALLERY</a>|</li>
+                        <li><a href="clients.html">CLIENTS </a>|</li>
+                        <li><a href="contactus.html">CONTACT US </a></li>
+                </ul>
+            </div><!--rk_footer_menu div  end-->
+            <div class="rk_follows"><!--rk_follows div start-->
+            	<div class="follows_image1"><a href="http://www.linkedin.com/" target="_blank"><img src="images/li_image.png" alt="" /></a></div>
+                <div class="follows_image1"><a href="http://www.facebook.com/" target="_blank"><img src="images/fb_image.png" alt="" /></a></div>
+                <div class="follows_image1"><a href="http://twitter.com/" target="_blank"><img src="images/tw_image.png" alt="" /></a></div>
+            </div><!--rk_follows div end-->
+            <div class="rk_copyright"><!--rk_copyright div satrt-->
+            	All Rights Reserved 2012  |  Designed by <a href="http://orangelab.in/" target="_blank"><span>Orange</span> Lab</a>
+            </div><!--rk_copyright div end-->
+        </div><!--rk_footer div end-->
+    </div><!--rk_footermain div end-->
+</body>
+</html>
