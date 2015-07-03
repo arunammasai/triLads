@@ -59,7 +59,7 @@
 </table>
 </form>
 <?php
-require('C:\xampp\php\pear\fpdf\fpdf.php'); 
+require('D:\xampp\php\pear\fpdf\fpdf.php'); 
 class PDF extends FPDF {
  
 function Header() {
@@ -81,16 +81,19 @@ function Footer() {
  
 }
 $currencyConversion = array();
+$invoiceSubDate = array();
 if (isset($_POST['ExecuteBillRun'])) 
 {
-	
-    $dbc=mysqli_connect('localhost','root','root','triLads_Billing');
+	$dbc=mysqli_connect('localhost','root','root','triLads_Billing');
 
     $EffDate     = $_POST["EffectiveDate"];
     $WhereClause = $_POST["WhereClause"];
 	$sPay = "select date_add(str_to_date('$EffDate','%m/%d/%Y'),interval 15 day) as PDate from dual ";
     $rPay = mysqli_query($dbc,$sPay);
 	$payment_date = mysqli_fetch_assoc($rPay)['PDate'];
+	$csvfile = fopen("D:\bill_run_details_$payment_date.csv","w");
+	$line = "CustomerName(MeterId),TotalUnitsConsumed,InvoiceAmount,Charge,Tax\n";
+	fputcsv($csvfile,explode(',',$line));
 	//echo "Payment". $payment_date ."<br>";
     echo "Executing billrun with effective date " . $EffDate . "  " . "and Where Clause : " . $WhereClause . "<br>";
     $CustsForBillRunSql = "SELECT c.accountId, c.Currency, e.equipmentId, IFNULL(c.LastBillDate, STR_TO_DATE('01/01/2000', '%m/%d/%Y')) LastBillDate,
@@ -207,9 +210,9 @@ if (isset($_POST['ExecuteBillRun']))
 				$EDate = $NEStageRow['EndDate'].'30';
 
 				
-			    $invoiceSubDate[$NEStageRow['Meter_id']]['Charge'][$SDate . '_' . $EDate]['Charge'] = $charge;
- 			    $invoiceSubDate[$NEStageRow['Meter_id']]['Tax'][$SDate . '_' . $EDate]['Tax'] = $tax;
-			    $invoiceSubDate[$NEStageRow['Meter_id']]['Total'][$SDate . '_' . $EDate]['Total'] = $total;
+			    $invoiceSubDate[$NEStageRow['Meter_id']][$SDate . '_' . $EDate]['Charge'] = $charge;
+ 			    $invoiceSubDate[$NEStageRow['Meter_id']][$SDate . '_' . $EDate]['Tax'] = $tax;
+			    $invoiceSubDate[$NEStageRow['Meter_id']][$SDate . '_' . $EDate]['Total'] = $total;
 				
 				if(isset($invoiceSubMeter[$NEStageRow['Meter_id']]['Charge'])){
 				   $invoiceSubMeter[$NEStageRow['Meter_id']]['Charge'] += $charge;
@@ -249,8 +252,10 @@ if (isset($_POST['ExecuteBillRun']))
     			$InvoiceAmount = $invoiceSubMeter[$MeterId]['Total'];
 	    		$insertInvoice = "insert into `invoice` (`InvoiceDate` ,`InvoiceAmount` ,`PaymentDueDate` ,`AccountId`) VALUES 
 		    					  (STR_TO_DATE('$EffDate', '%m/%d/%Y'),'$InvoiceAmount',date_add(str_to_date('$EffDate','%m/%d/%Y'),interval 15 day),'   $accountid')";
-			$r = mysqli_query($dbc,$insertInvoice);
-
+			    $r = mysqli_query($dbc,$insertInvoice);
+				$line ="$MeterId,$UnitsConsumed,$InvoiceAmount,$charge,$tax\n";
+				fputcsv($csvfile,explode(',',$line));
+				
 				//class instantiation
 			$pdf=new PDF("P","in","Letter");
 			 
@@ -326,7 +331,7 @@ if (isset($_POST['ExecuteBillRun']))
 			$pdf->MultiCell(0, 0.20, $Line2, 1, "R");
 			$pdf->MultiCell(0, 0.20, $Line3, '1', "R"); **/
 			 $pdf->Multicell(0,1,"Please visit https://www.tnebnet.org/awp/login to pay the bills online\n");
-			 $filename = "D:\\".$accountid.".pdf";
+			 $filename = "D:\\pdfs\\".$accountid."_".$payment_date.".pdf";
 			$pdf->Output($filename,'F');				
 			}	
         }
@@ -336,7 +341,7 @@ if (isset($_POST['ExecuteBillRun']))
         echo "Error is :".mysqli_connect_error();
         echo "Error is :".mysqli_connect_errno();
 	}
-    
+    fclose($csvfile);
     mysqli_close($dbc);
 }
 function CacheCurrencies($dbc,$EffDate)
