@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Perform Billrun</title>
+<meta charset="UTF-8" />
+<meta name="Designer" content="PremiumPixels.com">
+<meta name="Author" content="$hekh@r d-Ziner, CSSJUNTION.com">
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/structure.css">
+
+<meta charset="utf-8">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  
+  $(function() {
+    $( "#datepicker1" ).datepicker();
+  });
+  
+  $(function() {
+    $( "#datepicker2" ).datepicker();
+  });
+  
+  $(function() {
+    $( "#datepicker3" ).datepicker();
+  });
+  </script>
+
+
+
+
+</head>
+
+<body>
+
+<form class="custTable" action="Billing.php" method ="post" name="Bill Run Parameters">
+  <table style="border: 1px solid black" align="center" class=""> 
+    <tr>
+	  <td class="billrun">EffectiveDate</td>
+	  <td class="billrun">
+	    <input type="date" name="EffectiveDate" id="datepicker" tabindex="1" required>
+      </td>
+	</tr>
+    <tr>
+	  <td class="billrun">WhereClause</td><td class="billrun">
+	    <input type="text" name="WhereClause" tabindex="1">
+	  </td>
+	</tr>
+    <tr>
+	  <td class="billrun">
+	    <input type="submit" name="ExecuteBillRun" value="ExecuteBillRun">
+      </td>
+	</tr>
+</table>
+</form>
+<?php
+require('D:\xampp\php\pear\fpdf\fpdf.php'); 
+class PDF extends FPDF {
+ 
+function Header() {
+	//$this->Image("D:\HeaderLogo.jpg", (4.5/2)-1.5, 9.8, 3, 1, "JPG","www.verizon.com");
+    $this->SetFont('Times','',12);
+    $this->SetY(0.25);
+	$this->Cell(0, .25, "TamilNadu Electricity Board (TNEB) ", 'T', 2, "R");
+	$this->SetY(0.25);
+    //reset Y
+    $this->SetY(1);
+}
+ 
+function Footer() {
+//This is the footer; it's repeated on each page.
+//enter filename: phpjabber logo, x position: (page width/2)-half the picture size,
+//y position: rough estimate, width, height, filetype, link: click it!
+    $this->Image("D:\logo.jpg", (4.5/2)-1.5, 9.8, 3, 1, "JPG","www.verizon.com");
+}
+ 
+}
+$currencyConversion = array();
+if (isset($_POST['ExecuteBillRun'])) 
+{
+	
+    $dbc=mysqli_connect('localhost','root','root','triLads_Billing');
+
+    $EffDate     = $_POST["EffectiveDate"];
+    $WhereClause = $_POST["WhereClause"];
+	$sPay = "select date_add(str_to_date('$EffDate','%m/%d/%Y'),interval 15 day) as PDate from dual ";
+    $rPay = mysqli_query($dbc,$sPay);
+	$payment_date = mysqli_fetch_assoc($rPay)['PDate'];
+	//echo "Payment". $payment_date ."<br>";
+    echo "Executing billrun with effective date " . $EffDate . "  " . "and Where Clause : " . $WhereClause . "<br>";
+    $CustsForBillRunSql = "SELECT c.accountId, c.Currency, e.equipmentId, IFNULL(c.LastBillDate, STR_TO_DATE('01/01/2000', '%m/%d/%Y')) LastBillDate,
+	                               a.roundTo,CONCAT(c.AddressLine, ',', c.AddressStreet,',',c.AddressCity,',',c.AddressState,',',c.AddressPinCode)  address 
+                             FROM customer c, account a, equipment e
+		    				WHERE IFNULL(c.LastBillDate, STR_TO_DATE('01/01/2000', '%m/%d/%Y')) < STR_TO_DATE('$EffDate', '%m/%d/%Y')
+			    			  AND c.accountid = a.accountid
+				    		  AND sysdate() BETWEEN c.StartDate AND c.EndDate
+					    	  AND c.accountid = e.accountid " . $WhereClause;
+							  
+    if ($CustsForBillRunCsr = mysqli_query($dbc, $CustsForBillRunSql))
+	{
+        echo "Number of rows fetched" . mysqli_num_rows($CustsForBillRunCsr) . "<br>";
+		
+		//Fetch the rates and store it as a hash map
+		$rates = array();
+		$ratesTier = array();
+		$invoice = array();
+		$RatesSql = "Select TierStartValue, TierEndValue, Currency, RatePerUnit from rates order by 2 asc " ;
+		if($RatesCsr = mysqli_query($dbc, $RatesSql)){
+			while($lRates = mysqli_fetch_assoc($RatesCsr)){
+				$rates[$lRates['Currency']][$lRates['TierEndValue']] = $lRates['RatePerUnit'];
+				if(isset($ratesTier[$lRates['Currency']])){
+					array_push($ratesTier[$lRates['Currency']],$lRates['TierEndValue']);
+                }else {
+	                $ratesTier[$lRates['Currency']]= array($lRates['TierEndValue']);
+                }
+			}
+		}else{
+			echo "No Rates available <br>";
+		}
+		
+		
+        while($lCustForBillRun = mysqli_fetch_assoc($CustsForBillRunCsr))
+        {
+			//echo "EquipmentId" . $lCustForBillRun['equipmentId'] . "::::";
+			$MeterId = $lCustForBillRun['equipmentId'];
+			$RoundTo = $lCustForBillRun['roundTo'];
+			//echo "Last Bill Date" . $lCustForBillRun['LastBillDate'] . "::";
+			$LastBillDate = $lCustForBillRun['LastBillDate'];
+            $NEStageSQL = "SELECT Meter_id, extract(YEAR_MONTH from StartDate) StartDate, extract(year_month from EndDate) EndDate, sum(units_consumed)  units_consumed
+			                 FROM ne_stage 
+							WHERE Meter_id = $MeterId
+							  AND str_to_date('$LastBillDate', '%Y-%m-%d') < StartDate
+							  AND STR_TO_DATE('$EffDate', '%m/%d/%Y') > EndDate
+							GROUP BY extract(YEAR_MONTH from StartDate), extract(year_month from EndDate) 
+							ORDER BY Meter_Id, StartDate";
+
+			// Use Units Consumed, fetch Rates, compare currency, store in NE and charge tables, create subtotals and generate invoice.
+			$currency = 'INR';
+			
+			if(isset($ratesTier[$lCustForBillRun['Currency']])){
+				$ExchangeRate = 1.0;
+			}else{
+				if(empty($currencyConversion)){
+					  $currencyConversion = CacheCurrencies($dbc,$EffDate);
+				}
+			    $ExchangeRate = $currencyConversion[$currency][$lCustForBillRun['Currency']];
+			}
+							
+		    $NEStageCsr = mysqli_query($dbc, $NEStageSQL);
+			while($NEStageRow = mysqli_fetch_assoc($NEStageCsr))
+			{
+				/**echo "Meter Id: " . $NEStageRow["Meter_id"];
+				echo "Start Month: " . $NEStageRow["StartDate"];
+				echo "End Month: " . $NEStageRow["EndDate"];
+				echo "Units Consumed: " . $NEStageRow["units_consumed"]; **/
+				
+				$charge = 0;
+				$consumption = $NEStageRow['units_consumed'];
+				$PrevTierEndValue = 0;
+				$ChargeUnits = 0;
+				$CurTierEndValue = 0;
+				$BreakFlag = 0;
+				
+				//print_r($consumption); echo"<br>";
+				//echo "Currency::".$currency."<br>";
+				//print_r($ratesTier[$currency]);
+				foreach ($ratesTier[$currency] as &$value){
+					//print_r($value);
+					$CurTierEndValue = $value;
+					//echo "<br>";
+					if($consumption > $value){
+						$ChargeUnits = $CurTierEndValue - $PrevTierEndValue;
+						$PrevTierEndValue = $CurTierEndValue;
+					}
+					else
+					{
+						$ChargeUnits = $consumption - $PrevTierEndValue;
+						$BreakFlag = 1;
+					}
+
+					$rate = $rates[$currency][$value];
+					/**echo "<br>Consumption: $consumption;";
+					echo "<br>Tier End : " . $CurTierEndValue; 
+					echo "<br>Prev Value :" . $PrevTierEndValue; 
+					echo "<br>Cahrge uNits : " . $ChargeUnits;
+                    echo "<br>Rates : " . $rate;
+                    echo "<br>Excahnge Rate : " . $ExchangeRate;	**/				
+					$charge += $ChargeUnits * $rates[$currency][$CurTierEndValue] * $ExchangeRate;
+					if ($BreakFlag == 1) 
+					{
+						break;
+					}
+				}
+				$charge = round($charge, $RoundTo);
+				//echo "Charge:B4:". $charge."<br>";
+
+				//echo "Charge::". $charge."<br>";				
+				$tax = $charge * (1/10);
+				$total = $charge + round($tax, $RoundTo) ;
+				
+				$SDate = $NEStageRow['StartDate'].'01' ;
+				$EDate = $NEStageRow['EndDate'].'30';
+
+				
+			    $invoiceSubDate[$NEStageRow['Meter_id']]['Charge'][$SDate . '_' . $EDate]['Charge'] = $charge;
+ 			    $invoiceSubDate[$NEStageRow['Meter_id']]['Tax'][$SDate . '_' . $EDate]['Tax'] = $tax;
+			    $invoiceSubDate[$NEStageRow['Meter_id']]['Total'][$SDate . '_' . $EDate]['Total'] = $total;
+				
+				if(isset($invoiceSubMeter[$NEStageRow['Meter_id']]['Charge'])){
+				   $invoiceSubMeter[$NEStageRow['Meter_id']]['Charge'] += $charge;
+				   $invoiceSubMeter[$NEStageRow['Meter_id']]['Tax'] += $tax;
+				   $invoiceSubMeter[$NEStageRow['Meter_id']]['Total'] += $total;
+				}else{
+				   $invoiceSubMeter[$NEStageRow['Meter_id']]['Charge'] = $charge;
+				   $invoiceSubMeter[$NEStageRow['Meter_id']]['Tax'] = $tax;
+				   $invoiceSubMeter[$NEStageRow['Meter_id']]['Total'] = $total;
+				}
+				if(isset($BillRunSub['Charge'])){
+				   $BillRunSub['Charge'] += $charge;
+				   $BillRunSub['Tax'] += $tax;
+				   $BillRunSub['Total'] += $total;
+				}else{
+				   $BillRunSub['Charge'] = $charge;
+				   $BillRunSub['Tax'] = $tax;
+				   $BillRunSub['Total'] = $total;
+				}
+				/**print($invoiceSubMeter[$NEStageRow['Meter_id']]['Charge']);
+				print($invoiceSubMeter[$NEStageRow['Meter_id']]['Tax']);
+				print($invoiceSubMeter[$NEStageRow['Meter_id']]['Total']);
+				print_r($BillRunSub['Charge']);
+				print_r($BillRunSub['Tax']);
+				print_r($BillRunSub['Total']);**/
+				$accountid = $lCustForBillRun['accountId'];
+				$MeterId = $NEStageRow['Meter_id'];
+				$UnitsConsumed = $NEStageRow['units_consumed'];
+
+				//insert into Charge
+				$insertCharge = "INSERT INTO `Charge` (`AccountId`, `EquipmentId`, `Quantity`, `AmountBeforeTax`, `TaxPercentage`, `TaxAmount`,`TotalAmount`,
+								`StartDate`,`EndDate`) VALUES  ('$accountid','$MeterId','$UnitsConsumed','$charge',10,
+								'$tax','$total',STR_TO_DATE('$SDate', '%Y%m%d'),STR_TO_DATE('$EDate', '%Y%m%d'))" ;
+				$r = mysqli_query($dbc,$insertCharge);				
+			    //echo $lCustForBillRun["accountId"];
+	            //echo $lCustForBillRun["equipmentId"];
+    			$InvoiceAmount = $invoiceSubMeter[$MeterId]['Total'];
+	    		$insertInvoice = "insert into `invoice` (`InvoiceDate` ,`InvoiceAmount` ,`PaymentDueDate` ,`AccountId`) VALUES 
+		    					  (STR_TO_DATE('$EffDate', '%m/%d/%Y'),'$InvoiceAmount',date_add(str_to_date('$EffDate','%m/%d/%Y'),interval 15 day),'   $accountid')";
+			$r = mysqli_query($dbc,$insertInvoice);
+
+				//class instantiation
+			$pdf=new PDF("P","in","Letter");
+			 
+			$pdf->SetMargins(1.5,1.5,1.5);
+			 
+			$pdf->AddPage();
+			$pdf->SetFont('Times','',12);
+			$charge = $invoiceSubMeter[$MeterId]['Charge'];;
+			 $tax = $invoiceSubMeter[$MeterId]['Tax'];;
+			 $total = $charge + $tax;
+			 /**$chargespace = 12 - strlen($charge) + 67;
+			 $taxspace = 36 - strlen($tax)+ 67;
+			 $totalspace = 36 - strlen($total)+ 67;
+			 $chargespace = str_repeat(' ', $chargespace); 
+			 $taxspace = str_repeat(' ', $taxspace); 
+			 $totalspace = str_repeat(' ', $totalspace); 
+			 $Month = 'Jun15';
+			 $address ='Test,Test,Test,Chennai';
+			 
+			 $accountspace = str_repeat(' ', 12); 
+			 $cnspace = str_repeat(' ', 5); 
+			 $adspace = str_repeat(' ', 17);**/
+			 
+			 $Accountid = "Account Id "; 
+			 $CustomerName = "SmartMeter Id "; 
+			 $Address = "Address ";
+			 $address = $lCustForBillRun['address'];
+			 /**$myDateTime = DateTime::createFromFormat('%m/%d/%Y', $EffDate);
+			 $payment_date = $myDateTime->format('%m/%d/%Y');
+			 date_add($payment_date,date_interval_create_from_date_string("15 days"));**/
+			  
+			$Line1="Electricity Charges as on $EffDate ";
+			$Line2="Applicable tax  ";
+			$Line3="Total Charges  ";
+
+			$pdf->SetFillColor(240, 100, 100);
+			$pdf->SetFont('Times','BU',12);
+			  
+
+			$pdf->Cell(0,.25, "Customer Details", 1, 2, "C", 1);
+			  
+			$pdf->SetFont('Times','',12);
+			$pdf->Cell(0, 0.20, $Accountid, 1, 0, 'L');
+            $pdf->Cell(0, 0.20, $accountid, 1, 1, 'R');
+			$pdf->Cell(0, 0.20, $CustomerName, 1, 0, 'L');
+            $pdf->Cell(0, 0.20, $MeterId, 1, 1, 'R');
+			$pdf->Cell(0, 0.20, $Address, 1, 0, 'L');
+            $pdf->Cell(0, 0.20, $address, 1, 1, 'R');
+			$pdf->Cell(0, 0.20, "Payment Date", 1, 0, 'L');
+            $pdf->Cell(0, 0.20, $payment_date , 1, 1, 'R');
+						
+			/**$pdf->MultiCell(0, 0.20, $Accountid, '1', "L");
+			$pdf->MultiCell(0, 0.20, $CustomerName, 1, "L");
+			$pdf->MultiCell(0, 0.20, $Address, '1', "L");**/
+
+			 $pdf->Multicell(0,1,"\n");
+			  
+			$pdf->SetFillColor(240, 100, 100);
+			$pdf->SetFont('Times','BU',12);
+			  
+
+			$pdf->Cell(0, .25, "Electricity Bill", 1, 2, "C", 1);
+			  
+			$pdf->SetFont('Times','',12);
+			$pdf->Cell(0, 0.20, $Line1, 1, 0, 'L');
+            $pdf->Cell(0, 0.20, $charge, 1, 1, 'R');
+			$pdf->Cell(0, 0.20, $Line2, 1, 0, 'L');
+            $pdf->Cell(0, 0.20, $tax, 1, 1, 'R');
+			$pdf->Cell(0, 0.20, $Line3, 1, 0, 'L');
+            $pdf->Cell(0, 0.20, $total, 1, 1, 'R');
+
+			/**$pdf->MultiCell(0, 0.20, $Line1, '1', "R");
+			$pdf->MultiCell(0, 0.20, $Line2, 1, "R");
+			$pdf->MultiCell(0, 0.20, $Line3, '1', "R"); **/
+			 $pdf->Multicell(0,1,"Please visit https://www.tnebnet.org/awp/login to pay the bills online\n");
+			 $filename = "D:\\".$accountid.".pdf";
+			$pdf->Output($filename,'F');				
+			}	
+        }
+	}
+	else
+	{
+        echo "Error is :".mysqli_connect_error();
+        echo "Error is :".mysqli_connect_errno();
+	}
+    
+    mysqli_close($dbc);
+}
+function CacheCurrencies($dbc,$EffDate)
+	{
+	  $CurrencySql = "Select FromCurrency, ToCurrency, ExchangeRate from currencies where 
+						 ( STR_TO_DATE('$EffDate', '%m/%d/%Y') between StartDate and EndDate ) " ;
+   	  $CurrencyCsr = mysqli_query($dbc, $CurrencySql) ;
+	  while($lCurrency = mysqli_fetch_assoc($CurrencyCsr)){
+			$currencyConversion[$lCurrency['FromCurrency']][$lCurrency['ToCurrency']] = $lCurrency['ExchangeRate'];
+	  }
+	 // print_r($currencyConversion['INR']);
+      return $currencyConversion ;
+    }
+?>
+<footer id="main">
+  <a href="http://wwww.cssjunction.com">Simple Login Form (HTML5/CSS3 Coded) by CSS Junction</a> | <a href="http://www.premiumpixels.com">PSD by Premium Pixels</a>
+</footer>
+</body>
+</html>
