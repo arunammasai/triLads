@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2015 at 08:38 AM
+-- Generation Time: Jul 02, 2015 at 01:49 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -28,23 +28,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `account` (
   `AccountId` int(11) NOT NULL,
-  `TotalBal` decimal(16,6) NOT NULL,
-  `InvoiceId` int(11) NOT NULL,
-  `PrevBal` decimal(10,0) NOT NULL
+  `TotalBal` decimal(16,6) NULL,
+  `InvoiceId` int(11) NULL,
+  `PrevBal` decimal(16,6) NULL,
+  `RoundTo` int(1) NOT NULL default 2
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Dumping data for table `account`
---
-
-INSERT INTO `account` (`AccountId`, `TotalBal`, `InvoiceId`, `PrevBal`) VALUES
-(850001212, '0.000000', 0, '0');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `charge`
---
+INSERT INTO `account`(`AccountId`, `RoundTo`) VALUES (24680001, 2);
+INSERT INTO `account`(`AccountId`, `RoundTo`) VALUES (24680002, 4);
+INSERT INTO `account`(`AccountId`, `RoundTo`) VALUES (24680003, 2);
+INSERT INTO `account`(`AccountId`, `RoundTo`) VALUES (24680004, 3);
+INSERT INTO `account`(`AccountId`, `RoundTo`) VALUES (24680005, 2);
+INSERT INTO `account`(`AccountId`, `RoundTo`) VALUES (24680006, 1);
+INSERT INTO `account`(`AccountId`, `RoundTo`) VALUES (24680007, 2);
 
 CREATE TABLE IF NOT EXISTS `charge` (
   `ChargeId` int(11) NOT NULL,
@@ -64,18 +60,6 @@ CREATE TABLE IF NOT EXISTS `charge` (
   `Misc4` varchar(300) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Dumping data for table `charge`
---
-
-INSERT INTO `charge` (`ChargeId`, `AccountId`, `EquipmentId`, `Quantity`, `AmountBeforeTax`, `TaxPercentage`, `TaxAmount`, `TotalAmount`, `InvoiceId`, `StartDate`, `EndDate`, `Misc1`, `Misc2`, `Misc3`, `Misc4`) VALUES
-(1, 850001212, 750001212, 1111, '117157.162500', '10.000000', '11715.716250', '128872.878750', 0, '2015-06-01 00:00:00', '2015-06-30 00:00:00', '', '', '', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `currencies`
---
 
 CREATE TABLE IF NOT EXISTS `currencies` (
   `FromCurrency` varchar(3) COLLATE utf8_bin NOT NULL,
@@ -85,23 +69,14 @@ CREATE TABLE IF NOT EXISTS `currencies` (
   `EndDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Dumping data for table `currencies`
---
+INSERT INTO `currencies` (`FromCurrency`, `ToCurrency`, `ExchangeRate`, `StartDate`, `EndDate`) VALUES ('INR', 'USD', 64.65, '2014-07-01', '9999-12-31');
+INSERT INTO `currencies` (`FromCurrency`, `ToCurrency`, `ExchangeRate`, `StartDate`, `EndDate`) VALUES ('USD', 'INR', 1/64.65, '2014-07-01', '9999-12-31');
+INSERT INTO `currencies` (`FromCurrency`, `ToCurrency`, `ExchangeRate`, `StartDate`, `EndDate`) VALUES ('INR', 'GBR', 90.65, '2014-07-01', '9999-12-31');
+INSERT INTO `currencies` (`FromCurrency`, `ToCurrency`, `ExchangeRate`, `StartDate`, `EndDate`) VALUES ('GBR', 'INR', 1/90.65, '2014-07-01', '9999-12-31');
+INSERT INTO `currencies` (`FromCurrency`, `ToCurrency`, `ExchangeRate`, `StartDate`, `EndDate`) VALUES ('INR', 'EUR', 55.65, '2014-07-01', '9999-12-31');
+INSERT INTO `currencies` (`FromCurrency`, `ToCurrency`, `ExchangeRate`, `StartDate`, `EndDate`) VALUES ('EUR', 'INR', 1/55.65, '2014-07-01', '9999-12-31'); 
 
-INSERT INTO `currencies` (`FromCurrency`, `ToCurrency`, `ExchangeRate`, `StartDate`, `EndDate`) VALUES
-('EUR', 'INR', '0.017969', '2014-07-01', '9999-12-31'),
-('GBR', 'INR', '0.011031', '2014-07-01', '9999-12-31'),
-('INR', 'EUR', '55.650000', '2014-07-01', '9999-12-31'),
-('INR', 'GBR', '90.650000', '2014-07-01', '9999-12-31'),
-('INR', 'USD', '64.650000', '2014-07-01', '9999-12-31'),
-('USD', 'INR', '0.015468', '2014-07-01', '9999-12-31');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `customer`
---
 
 CREATE TABLE IF NOT EXISTS `customer` (
   `Name` varchar(200) COLLATE utf8_bin NOT NULL DEFAULT 'Test',
@@ -109,53 +84,44 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `AddressStreet` varchar(300) COLLATE utf8_bin NOT NULL DEFAULT 'default street',
   `AddressCity` varchar(300) COLLATE utf8_bin NOT NULL DEFAULT 'default city',
   `AddressState` varchar(300) COLLATE utf8_bin NOT NULL DEFAULT 'Default State',
+  `AddressCountry` varchar(300) COLLATE utf8_bin NOT NULL DEFAULT 'Default Country',
   `AddressPinCode` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT 'default PinCode',
   `Currency` varchar(3) COLLATE utf8_bin NOT NULL DEFAULT 'INR',
   `StartDate` date NOT NULL,
   `ActiveDate` date NOT NULL,
   `EndDate` date NOT NULL,
-  `LastBillDate` date NOT NULL,
+  `LastBillDate` date NULL,
   `Status` varchar(15) COLLATE utf8_bin NOT NULL DEFAULT 'Active',
   `AccountId` int(11) NOT NULL,
   `password` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Dumping data for table `customer`
---
+INSERT INTO `customer`(`Name`, `AddressLine`, `AddressStreet`, `AddressCity`, `AddressState`, `AddressCountry`, `AddressPinCode`, `Currency`, `StartDate`, `ActiveDate`, `EndDate`, `LastBillDate`, `Status`, `AccountId`) VALUES ('Karthik2', 'Line2', 'Street2', 'City2', 'State2', 'Country2', 'PinCode2', 'INR', '2015-01-01', '2015-01-01', '9999-12-31', '2000-01-01', 'Active', 24680001); 
+INSERT INTO `customer`(`Name`, `AddressLine`, `AddressStreet`, `AddressCity`, `AddressState`, `AddressCountry`, `AddressPinCode`, `Currency`, `StartDate`, `ActiveDate`, `EndDate`, `LastBillDate`, `Status`, `AccountId`) VALUES ('Karthik3', 'Line3', 'Street3', 'City3', 'State3', 'Country2', 'PinCode3', 'INR', '2015-01-01', '2015-01-01', '9999-12-31', '2000-01-01', 'Active', 24680002);
+INSERT INTO `customer`(`Name`, `AddressLine`, `AddressStreet`, `AddressCity`, `AddressState`, `AddressCountry`, `AddressPinCode`, `Currency`, `StartDate`, `ActiveDate`, `EndDate`, `LastBillDate`, `Status`, `AccountId`) VALUES ('Karthik4', 'Line4', 'Street4', 'City4', 'State4', 'Country2', 'PinCode4', 'INR', '2015-01-01', '2015-01-01', '9999-12-31', '2000-01-01', 'Active', 24680003);
+INSERT INTO `customer`(`Name`, `AddressLine`, `AddressStreet`, `AddressCity`, `AddressState`, `AddressCountry`, `AddressPinCode`, `Currency`, `StartDate`, `ActiveDate`, `EndDate`, `LastBillDate`, `Status`, `AccountId`) VALUES ('Karthik5', 'Line5', 'Street5', 'City5', 'State5', 'Country2', 'PinCode5', 'INR', '2015-01-01', '2015-01-01', '9999-12-31', '2000-01-01', 'Active', 24680004);
+INSERT INTO `customer`(`Name`, `AddressLine`, `AddressStreet`, `AddressCity`, `AddressState`, `AddressCountry`, `AddressPinCode`, `Currency`, `StartDate`, `ActiveDate`, `EndDate`, `LastBillDate`, `Status`, `AccountId`) VALUES ('Karthik6', 'Line6', 'Street6', 'City6', 'State6', 'Country2', 'PinCode6', 'INR', '2015-01-01', '2015-01-01', '9999-12-31', '2000-01-01', 'Active', 24680005);
+INSERT INTO `customer`(`Name`, `AddressLine`, `AddressStreet`, `AddressCity`, `AddressState`, `AddressCountry`, `AddressPinCode`, `Currency`, `StartDate`, `ActiveDate`, `EndDate`, `LastBillDate`, `Status`, `AccountId`) VALUES ('Karthik7', 'Line7', 'Street7', 'City7', 'State7', 'Country2', 'PinCode7', 'INR', '2015-01-01', '2015-01-01', '9999-12-31', '2000-01-01', 'Active', 24680006);
+INSERT INTO `customer`(`Name`, `AddressLine`, `AddressStreet`, `AddressCity`, `AddressState`, `AddressCountry`, `AddressPinCode`, `Currency`, `StartDate`, `ActiveDate`, `EndDate`, `LastBillDate`, `Status`, `AccountId`) VALUES ('Karthik8', 'Line8', 'Street8', 'City8', 'State8', 'Country2', 'PinCode8', 'INR', '2015-01-01', '2015-01-01', '9999-12-31', '2000-01-01', 'Active', 24680007);
 
-INSERT INTO `customer` (`Name`, `AddressLine`, `AddressStreet`, `AddressCity`, `AddressState`, `AddressPinCode`, `Currency`, `StartDate`, `ActiveDate`, `EndDate`, `LastBillDate`, `Status`, `AccountId`, `password`) VALUES
-('Test', 'default line 1', 'default street', 'default city', 'Default State', 'default PinCode', 'INR', '2015-07-01', '2015-07-01', '9999-12-31', '0000-00-00', 'Active', 0, ''),
-('Test', 'default line 1', 'default street', 'default city', 'Default State', 'default PinCode', 'INR', '2015-07-01', '2015-07-01', '9999-12-31', '0000-00-00', 'Active', 1, ''),
-('Test', 'default line 1', 'default street', 'default city', 'Default State', 'default PinCode', 'INR', '2015-07-01', '2015-07-01', '9999-12-31', '0000-00-00', 'Active', 1, ''),
-('Test', 'default line 1', 'default street', 'default city', 'Default State', 'default PinCode', 'EUR', '2015-05-01', '2015-05-01', '2020-07-03', '0000-00-00', 'Active', 850001212, '');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `equipment`
---
 
 CREATE TABLE IF NOT EXISTS `equipment` (
   `EquipmentId` int(11) NOT NULL,
   `AccountId` int(11) NOT NULL,
   `EquipmentType` varchar(100) COLLATE utf8_bin NOT NULL,
-  `InstanceId` int(11) NOT NULL,
+  `InstanceId` int(11) NULL,
   `Status` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Dumping data for table `equipment`
---
-
-INSERT INTO `equipment` (`EquipmentId`, `AccountId`, `EquipmentType`, `InstanceId`, `Status`) VALUES
-(750001212, 850001212, 'SmartMeter', 120001212, 'Active');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `invoice`
---
+INSERT INTO `equipment`(`EquipmentId`, `AccountId`, `EquipmentType`, `Status`) VALUES (24680002, 24680002, 'ElectricMeter', 'Active') ;
+INSERT INTO `equipment`(`EquipmentId`, `AccountId`, `EquipmentType`, `Status`) VALUES (24680003, 24680003, 'ElectricMeter', 'Active') ;
+INSERT INTO `equipment`(`EquipmentId`, `AccountId`, `EquipmentType`, `Status`) VALUES (24680004, 24680004, 'ElectricMeter', 'Active') ;
+INSERT INTO `equipment`(`EquipmentId`, `AccountId`, `EquipmentType`, `Status`) VALUES (24680005, 24680005, 'ElectricMeter', 'Active') ;
+INSERT INTO `equipment`(`EquipmentId`, `AccountId`, `EquipmentType`, `Status`) VALUES (24680006, 24680006, 'ElectricMeter', 'Active') ;
+INSERT INTO `equipment`(`EquipmentId`, `AccountId`, `EquipmentType`, `Status`) VALUES (24680007, 24680007, 'ElectricMeter', 'Active') ;
+INSERT INTO `equipment`(`EquipmentId`, `AccountId`, `EquipmentType`, `Status`) VALUES (24680008, 24680008, 'ElectricMeter', 'Active') ;
+INSERT INTO `equipment`(`EquipmentId`, `AccountId`, `EquipmentType`, `Status`) VALUES (24680001, 24680001, 'ElectricMeter', 'Active') ;
 
 CREATE TABLE IF NOT EXISTS `invoice` (
   `InvoiceId` int(11) NOT NULL,
@@ -166,18 +132,6 @@ CREATE TABLE IF NOT EXISTS `invoice` (
   `InvoicePages` blob
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Dumping data for table `invoice`
---
-
-INSERT INTO `invoice` (`InvoiceId`, `InvoiceDate`, `InvoiceAmount`, `PaymentDueDate`, `AccountId`, `InvoicePages`) VALUES
-(1, '2015-07-31', '128872.878750', '2015-08-15', 850001212, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ne_stage`
---
 
 CREATE TABLE IF NOT EXISTS `ne_stage` (
   `Meter_id` int(20) NOT NULL,
@@ -188,19 +142,19 @@ CREATE TABLE IF NOT EXISTS `ne_stage` (
   `units_consumed` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Dumping data for table `ne_stage`
---
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+(24680003,STR_TO_DATE('6/30/15 5:00 AM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('6/30/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'22','37','15');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+(24680003,STR_TO_DATE('6/23/15 5:00 PM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('6/24/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'12','22','10');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+(24680003,STR_TO_DATE('7/2/15 1:00 PM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('7/02/15 4:55 PM', '%m/%d/%Y %h:%i %p'),'37','50','13');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+(24680004,STR_TO_DATE('6/30/15 5:00 AM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('6/30/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'12','22','10');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+(24680004,STR_TO_DATE('7/11/15 5:00 AM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('7/11/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'22','42','20');
+INSERT INTO ne_stage (Meter_id,startDate,endDate,meter_start,meter_end,units_consumed) VALUES
+(24680005,STR_TO_DATE('6/30/15 5:00 AM', '%m/%d/%Y %h:%i %p'),STR_TO_DATE('6/30/15 5:15 AM', '%m/%d/%Y %h:%i %p'),'12','22','10');
 
-INSERT INTO `ne_stage` (`Meter_id`, `StartDate`, `endDate`, `meter_start`, `meter_end`, `units_consumed`) VALUES
-(750001212, '2015-06-30 05:00:00', '2015-06-30 07:15:00', 32309, 32345, 36),
-(750001212, '2015-06-23 07:00:00', '2015-06-24 03:00:00', 31233, 32308, 1075);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `rates`
---
 
 CREATE TABLE IF NOT EXISTS `rates` (
   `RatePlan` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT 'TEST',
@@ -215,6 +169,67 @@ CREATE TABLE IF NOT EXISTS `rates` (
   `Misc4` varchar(300) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+INSERT INTO `rates`(`TierStartValue`, `TierEndValue`, `Currency`, `RatePerUnit`, `UOM`) VALUES (0, 300, 'INR', 1.25, 'WATTS');
+INSERT INTO `rates`(`TierStartValue`, `TierEndValue`, `Currency`, `RatePerUnit`, `UOM`) VALUES (301, 600, 'INR', 1.75, 'WATTS');
+INSERT INTO `rates`(`TierStartValue`, `TierEndValue`, `Currency`, `RatePerUnit`, `UOM`) VALUES (601, 1000, 'INR', 2.25, 'WATTS');
+INSERT INTO `rates`(`TierStartValue`, `TierEndValue`, `Currency`, `RatePerUnit`, `UOM`) VALUES (1001, 99999999, 'INR', 2.75, 'WATTS');
+
+
+
+
+ALTER TABLE `account`
+  ADD PRIMARY KEY (`AccountId`);
+
+--
+-- Indexes for table `charge`
+--
+ALTER TABLE `charge`
+  ADD PRIMARY KEY (`ChargeId`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`AccountId`);
+
+--
+-- Indexes for table `equipment`
+--
+ALTER TABLE `equipment`
+  ADD PRIMARY KEY (`EquipmentId`);
+
+
+--
+-- Indexes for table `invoice`
+--
+ALTER TABLE `invoice`
+  ADD PRIMARY KEY (`InvoiceId`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `charge`
+--
+ALTER TABLE `charge`
+  MODIFY `ChargeId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `AccountId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `equipment`
+--
+ALTER TABLE `equipment`
+  MODIFY `EquipmentId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `invoice`
+--
+ALTER TABLE `invoice`
+  MODIFY `InvoiceId` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
