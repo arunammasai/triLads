@@ -18,12 +18,12 @@
     <div class="rk_maincontent"><!--rk_maincontent div start-->
     	<div class="rk_centercontent"><!--rk_centercontent div start-->
 			 <div class="inner_services"><!--inner_services div start-->
-				<div class="in_servicestitle"><img src="images/leftarrow_image.png" alt="" align="left" /><span>Contact us</span></div>
+				<div class="in_servicestitle"><img src="images/leftarrow_image.png" alt="" align="left" /><span>Login</span></div>
 				<div class="in_services_desc"><!--in_services_desc div start-->
 					<p>
 							
 						<div class="scope_desc"><!--scope_desc div start-->
-							<div class="scope_title">Contact us</div>
+							<div class="scope_title">Login</div>
 							 <div class="contact_page"><!--contact_page div start-->
 								
 								<div class="contact_page_left"><!--contact_page_right div satrt-->
@@ -58,6 +58,6 @@
 	
 <?php include_once('footer.php');
 
-if($_GET['error'] == 1)
-	echo "<script>window.alert('Invalid user')</script>";
+//if($_GET['error'] == 1)
+	//echo "<script>window.alert('Invalid user')</script>";
 ?>
