@@ -21,7 +21,7 @@
 	
     <div class="rk_maincontent"><!--rk_maincontent div start-->
     	<div class="rk_centercontent"><!--rk_centercontent div start-->
-                 <div class="inner_aboutus"><!--inner_aboutus div start-->
+                 <div class="inner_aboutus"><!--inner_aboutus div start--><br>			 <br><br><br>
                 	<div class="inneraboutus_title"><img src="images/leftarrow_image.png" alt="" align="left" /><span>GALLERY</span></div>
                     <div class="inneraboutus_desc"><!--aboutus_desc div start-->
                           <div class="aboutus_image1"><!--aboutus_image1 div satrt-->
