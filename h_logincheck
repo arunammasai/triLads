@@ -11,7 +11,7 @@ if (isset($_POST['submitBut'])) {
 //$startdate.$activationdate.$enddate.$lastbilldate.$status.$accountid.$accountbalance";
 
 $customername = $_POST["customername"];
-$password = md5($_POST["password"]);
+$password = $_POST["password"];
 
 $query = "SELECT AccountId FROM customer WHERE Name='$customername' AND password='$password'";
 $result	= mysqli_query($conn, $query);
