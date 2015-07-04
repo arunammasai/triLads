@@ -1,0 +1,29 @@
+<head>
+<script>
+function test(){
+	
+	var file = document.getElementById("a").value;
+	//window.open("D://pdfs"+file);
+	exec("Acrobat.exe /A "zoom=1000" +file);
+	
+}
+</script>
+</head>
+<form action="download.php" method="post">
+<select name="report" onchange=test() id="a">
+<?php
+
+$dir ='D:\pdfs';
+$files = array();
+$files = scandir($dir);
+
+foreach($files as $file){
+	echo "<option value='$file'>$file</option>";
+}
+?>
+
+</select></div>
+
+<?php
+echo "<a href='$dir.$file'>$file</a>";
+?>
