@@ -22,7 +22,7 @@ img										{ border:none; }
 
 .main_menu ul li						{ float:left; font: bold 15px Tahoma, Geneva, sans-serif; color:#faf7f7; background:url(../images/manu_back.png) no-repeat; width:140px; height:50px; text-align:center;  margin:0px 13px;  }
 
-.main_menu ul li a						{ text-decoration:none; color:#fff; width:140px; height:35px; float:left; display:block;  padding-top:10px; }
+.main_menu ul li a						{ text-decoration:none; color:#fff; width:140px; height:35px; float:left;  padding-top:10px; }
 
 .main_menu ul li a:hover				{ width:140px; height:35px; background:url(../images/menu_hoverbg.png) no-repeat; }
 
