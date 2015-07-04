@@ -14,19 +14,9 @@
     	<div class="rk_centercontent"><!--rk_centercontent div start-->
         	<div class="rk_contentleft"><!--rk_contentleft	 div start-->
             	<div class="welcome_leftcontent"><!--welcome_leftcontent div satrt-->
-                	<div class="welcome_title"><img src="images/leftarrow_image.png" alt="" align="left" /><span>Welcome to our site</span></div>
-                    <div class="welcome_desc"><!--welcome_desc div start-->
-                    	<img src="images/site_image.png" alt="" />
-                        <p>
-                             M/s. R K power Enterprises have pleasure to introducing  ourselves 
-                            as  one  of the  Service   engineering leading   contractors  for the 
-                            past 10 years. <br />
-                            
-							Our main objective is to achieve the optimal Technology Progress in 
-Electrical &  Mechanical Data  Work activities. We  are providing  the 
-most possible flexibility and reliability in customer service
-
-                        </p>
+                	<div class="welcome_title"></div>
+                    <div class="welcome_desc"><!--welcome_desc div start-->                    	
+                        
                     </div><!--welcome_desc div end-->
                 </div><!--welcome_leftcontent div  end-->
                 <div class="aboutus_content"><!--aboutus_content div start-->
