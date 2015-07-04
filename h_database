@@ -1,2 +1,2 @@
 <?php
- $conn = mysqli_connect("localhost", "root", "", "trilads_billing");
+ $conn = mysqli_connect("localhost", "root", "root", "trilads_billing");
