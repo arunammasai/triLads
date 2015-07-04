@@ -7,7 +7,7 @@
 	if(empty($id_user))
 		header("Location: login.php");	
 	
-	$query = "SELECT * FROM customer WHERE AccountId=".$id_user;
+	$query = "SELECT * FROM customer cust,account acc WHERE cust.AccountId = acc.AccountId and cust.AccountId=".$id_user;
 	$result	= mysqli_query($conn, $query);
 	
 	$user_info = mysqli_fetch_array($result);
@@ -28,20 +28,20 @@
   
     <div class="rk_maincontent"><!--rk_maincontent div start-->
     	<div class="rk_centercontent"><!--rk_centercontent div start-->
-			 <div class="inner_services"><!--inner_services div start-->
-				<div class="in_servicestitle"><img src="images/leftarrow_image.png" alt="" align="left" /><span>Contact us</span></div>
+			 <div class="inner_services"><!--inner_services div start--><br>			 <br><br><br>
+				<div class="in_servicestitle"><img src="images/leftarrow_image.png" alt="" align="left" /><span>Edit Customer Details</span></div>
 				<div class="in_services_desc"><!--in_services_desc div start-->
 					<p>
 							
 						<div class="scope_desc"><!--scope_desc div start-->
-							<div class="scope_title">Edit user information</div>
+							<div class="scope_title"></div>
 							 <div class="contact_page"><!--contact_page div start-->
 								
 								<div class="contact_page_left"><!--contact_page_right div satrt-->
 									<form class="custTable" action="edit.php" method ="post" name="custDetails">
 									 <div class="conatctpage_labeltext"><!--conatctpage_labeltext div start-->
 										<div class="contact_name">Customer Name<span>*</span></div>
-										<div class="contactpage_textbox"><input type="text" name="customername" value="<?php echo $user_info['Name'];?>" class="cpagetextbox_text" required /></div>
+										<div class="contactpage_textbox"><input type="text" name="customername" value="<?php echo $user_info['Name'];?>" class="cpagetextbox_text" required readonly/></div>
 									 </div><!--conatctpage_labeltext div end-->
 									 
 									 <div class="conatctpage_labeltext"><!--conatctpage_labeltext div start-->
@@ -81,7 +81,7 @@
 									 
 									  <div class="conatctpage_labeltext"><!--conatctpage_labeltext div start-->
 										<div class="contact_name">Rounding<span>*</span></div>
-										<div class="contactpage_textbox"><input type="number" name="rounding" value="<?php echo $user_info['Rounding'];?>" class="cpagetextbox_text" required /></div>
+										<div class="contactpage_textbox"><input type="number" name="rounding" value="<?php echo $user_info['RoundTo'];?>" class="cpagetextbox_text" required /></div>
 									 </div><!--conatctpage_labeltext div end-->
 									 
 									 <div class="conatctpage_labeltext"><!--conatctpage_labeltext div start-->
@@ -122,11 +122,14 @@ $rounding 		= $_POST["rounding"];
 
 $sql = "UPDATE customer SET
 Name ='$customername',AddressLine='$addressline',AddressStreet='$addressstreet',AddressCity='$addresscity',AddressState='$addressstate',AddressPinCode='$addresspincode',
-Currency='$currency',StartDate=STR_TO_DATE('$startdate', '%m/%d/%Y'), Rounding='$rounding' WHERE AccountId=".$id_user;
+Currency='$currency',StartDate=STR_TO_DATE('$startdate', '%m/%d/%Y') WHERE AccountId=".$id_user;
 
+$updateAccount ="update account set RoundTo=$rounding WHERE AccountId=".$id_user;
 if(mysqli_query($conn, $sql) === TRUE)
 {
+	if(mysqli_query($conn, $updateAccount) === TRUE){
 	echo "<script>window.alert('Customer Updated ...');window.location.href=window.location.href;</script>";	
+	}
 } 
 else
 {
