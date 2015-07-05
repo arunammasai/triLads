@@ -14,15 +14,15 @@ img										{ border:none; }
 
 .rk_logo								{ width:210px; height:190px; float:left; padding:75px 0px 0px 75px; }
 
-.rk_headbottom							{ width:1000px; height:50px; float:left;   }
+.rk_headbottom							{ width:1000px; min-height:50px; float:left;   }
 
-.main_menu								{ width:1000px; height:50px; float:left; }
+.main_menu								{ width:1000px; min-height:50px; float:left; }
 
 .main_menu ul							{ margin:0px; padding:0px; list-style:none; display:block; }
 
 .main_menu ul li						{ float:left; font: bold 15px Tahoma, Geneva, sans-serif; color:#faf7f7; background:url(../images/manu_back.png) no-repeat; width:140px; height:50px; text-align:center;  margin:0px 13px;  }
 
-.main_menu ul li a						{ text-decoration:none; color:#fff; width:140px; height:35px; float:left;  padding-top:10px; }
+.main_menu ul li a						{ text-decoration:none; color:#fff; width:140px; height:35px; float:left; display:block;  padding-top:10px; }
 
 .main_menu ul li a:hover				{ width:140px; height:35px; background:url(../images/menu_hoverbg.png) no-repeat; }
 
@@ -146,11 +146,11 @@ img										{ border:none; }
 
 .inner_services							{ width:900px; height:auto; float:left; }
 
-.in_servicestitle						{ width:900px; height:25px; float:left; padding-top:10px; border-bottom:1px dashed #e5e5e5; margin-bottom:5px;   }
+.in_servicestitle						{ width:900px; height:25px; float:left; padding-top:10px; border-bottom:1px dashed #e5e5e5; margin-bottom:5px;   padding-left:270px;}
 
 .in_servicestitle span					{ padding-left:10px; float:left; font:bold 14px  Arial, Helvetica, sans-serif; color:#fbf9f9; padding-top:2px; text-transform:uppercase;  }
 
-.in_services_desc						{ width:900px; height:auto; float:left; text-align:justify;  min-height:250px;  }
+.in_services_desc						{ width:900px; height:auto; float:left; text-align:justify;  min-height:250px; padding-left:270px;}
 
 .in_services_desc p		  				{ width:900px; height:auto; float:left;  text-align:justify; font:normal 12px Tahoma, Geneva, sans-serif; color:#838282; line-height:22px;  margin:0px; }
 
