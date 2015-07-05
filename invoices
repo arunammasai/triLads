@@ -2,16 +2,28 @@
 	include_once('header.php');
 	include_once('database.php');
 	
-	if( ! empty($_SESSION['id_user']))
-		header("Location: view.php");	
+	if(empty($_SESSION['id_user']))
+		header("Location: login.php");	
 ?>
 <script>
 	$(document).ready(function()
 	{
 		$('#menu li a').removeClass('active');
-		$('#menu #login a').addClass('active');
+		$('#menu #invoice a').addClass('active');
 		
 		$('body').animate({scrollTop :450}, 2000);
+		
+		$('#submitBut').click(function()
+		{
+
+			if($('#pdfs').val().length==0){
+				alert("Select File :");
+				return false;
+			}
+			var url = 'pdf/'+$('#pdfs').val();	
+			window.open(url,'_blank');
+		});
+		
 	});
 </script>
   
@@ -27,27 +39,34 @@
 							 <div class="contact_page"><!--contact_page div start-->
 								
 								<div class="contact_page_left"><!--contact_page_right div satrt-->
-									<form class="custTable" action="invoices.php" method ="post" name="custDetails">
+									
 									 <div class="conatctpage_labeltext"><!--conatctpage_labeltext div start-->
 										<div class="contact_name">File Name<span>*</span></div>
 										<div class="contactpage_textbox">
-										<select name="fileName" onchange=test() id="a">
+										<select name="fileName" id="pdfs">
+										<option value="">Select File</option>
 										<?php
-											$dir ='D:\\pdfs\\';
-											$files = array();
-											$files = scandir($dir);
+											$dir 	=	$_SERVER['DOCUMENT_ROOT'].'trilads/pdf/';
+											$files 	=	scandir($dir);
 											
-											foreach($files as $file){
-												echo "<option value='$file'>$file</option>";
+											if( ! empty($files))
+											{												
+												foreach($files as $file)
+												{
+													if(is_dir($file))
+														continue;
+														
+													echo "<option value='$file'>$file</option>";
+												}
 											}
 										?>
 										</select>
 									 </div><!--conatctpage_labeltext div end-->
 									 
 									 <div class="conatctpage_labeltext"><!--conatctpage_labeltext div start-->
-										<div class="conatctpage_submit"><input type="submit" name="submitBut" class="sub_button" value="submit"/></div>
+										<div class="conatctpage_submit"><input type="submit" name="submitBut" id="submitBut" class="sub_button" value="submit"/></div>
 									  </div><!--conatctpage_labeltext div end-->
-									 </form>
+									
 								</div><!--contact_page_right div end-->
 							 </div><!--contact_page div end-->
 										 
