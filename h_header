@@ -27,6 +27,7 @@
                         <li id="edit"><a href="edit.php">EDIT </a></li>
 						<li id="signup"><a href="registerCustomer.php">ADD CUSTOMER </a></li>	
                         <li id="view"><a href="view.php">VIEW</a></li>
+						<li id="invoice"><a href="invoices.php">INVOICE</a></li>
 						<li id="loadusagedata"><a href="loadUsage.php">LOAD USAGE DATA</a></li>
 						<li id="performbillrun"><a href="performBillRun1.php">PERFORM BILL RUN</a></li>
 						<!--li id="view"><a href="invoices.php">INVOICES</a></li-->
