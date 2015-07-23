@@ -1,0 +1,83 @@
+Please see the details below.
+
+WSDL URL (to be used ONLY for reference) - http://esqpdcgpa02.vzbi.com:8080/METAL/AlarmService?wsdl 
+REST API URL
+
+1.	POST http://esqpdcgpa02.vzbi.com:8080/METAL/rest/alarm/createResourceAlarm -- North flow from Tier 3 system
+2.	POST http://esqpdcgpa02.vzbi.com:8080/METAL/rest/alarm/updateResourceAlarm -- Update from IMPACT
+
+Sample xmls attached with this email.
+
+
+Update from Impact:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<alar:resourceAlarm xmlns:alar="http://tmforum.verizon.com/tip/resource/trouble/alarm" xmlns:ent="http://tmforum.verizon.com/tip/internal/entity" xmlns:base="http://tmforum.verizon.com/tip/cbe/base" xmlns:prob="http://tmforum.verizon.com/tip/cbe/problem" xmlns:nrb="http://tmforum.verizon.com/tip/resource/res/nrb">
+	<ent:identifier>
+		<ent:context>Host</ent:context>
+		<ent:id>rtxtd1-scms1.rtxvzscom.com</ent:id>
+		<ent:entityType>Power Shell Script failed to run</ent:entityType>
+	</ent:identifier>
+	<ent:aliasNames>
+		<ent:item>
+			<ent:name>Owner</ent:name>
+			<ent:value>Aniruth</ent:value>
+		</ent:item>
+		<ent:item>
+			<ent:name>AlertCustomField1</ent:name>
+			<ent:value/>
+		</ent:item>
+		<ent:item>
+			<ent:name>AlertCustomField2</ent:name>
+			<ent:value>Host</ent:value>
+		</ent:item>
+		<ent:item>
+			<ent:name>AlertCustomField3</ent:name>
+			<ent:value>rtxtd1-scms1.rtxvzscom.com</ent:value>
+		</ent:item>
+		<ent:item>
+			<ent:name>AlertCustomField4</ent:name>
+			<ent:value>MOMENTARY</ent:value>
+		</ent:item>
+		<ent:item>
+			<ent:name>AlertCustomField5</ent:name>
+			<ent:value>rtxtd1-scms1.rtxvzscom.com</ent:value>
+		</ent:item>
+		<ent:item>
+			<ent:name>AlertCustomField6</ent:name>
+			<ent:value/>
+		</ent:item>
+		<ent:item>
+			<ent:name>AlertCustomField7</ent:name>
+			<ent:value/>
+		</ent:item>
+		<ent:item>
+			<ent:name>AlertCustomField8</ent:name>
+			<ent:value/>
+		</ent:item>
+		<ent:item>
+			<ent:name>AlertCustomField9</ent:name>
+			<ent:value/>
+		</ent:item>
+		<ent:item>
+			<ent:name>AlertCustomField10</ent:name>
+			<ent:value/>
+		</ent:item>
+	</ent:aliasNames>
+	<alar:alarmId>3289a049-5584-409d-81e8-240c5f6f0672</alar:alarmId>
+	<alar:alarmOrigin>BLM</alar:alarmOrigin>
+	<alar:alarmType>MOMENTARY</alar:alarmType>
+	<alar:perceivedSeverity>Warning</alar:perceivedSeverity>
+	<alar:managedObjectClass>0</alar:managedObjectClass>
+	<alar:alarmRaisedTime>6/23/2015 9:12:37 PM</alar:alarmRaisedTime>
+	<alar:systemDN>OperationsManager</alar:systemDN>
+	<alar:ackState>0</alar:ackState>
+	<alar:additionalText>RTXVZSCOM\sAgarwal</alar:additionalText>
+	<alar:alarmChangedTime>6/29/2015 8:50:56 PM</alar:alarmChangedTime>
+	<alar:alarmClearedTime/>
+	<alar:managedObjectInstance>
+		<ent:context>Forced to terminate the following PowerShell script because it ran past the configured timeout 300 seconds.....Script Name:.AgentStateRollup.ps1...One or more workflows were affected by this. ...Workflow name: ManagementGroupCollectionAgentHealthStatesRule..Instance name: All Management Servers Resource Pool..Instance ID: {4932D8F0-C8E2-2F4B-288E-3ED98A340B9F}..Management group: scom-rtx1-test.</ent:context>
+		<ent:id>rtxtd1-scms1.rtxvzscom.com</ent:id>
+		<ent:entityType>TO BE POPULATED BY BLM AFTER ESP WEB-SERVICE CALL</ent:entityType>
+	</alar:managedObjectInstance>
+</alar:resourceAlarm>
