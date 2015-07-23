@@ -1,43 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package testsplunk;
-
-import com.splunk.HttpService;
-import com.splunk.SSLSecurityProtocol;
-import com.splunk.SavedSearch;
-import com.splunk.SavedSearchCollection;
-import com.splunk.Service;
-import com.splunk.ServiceArgs;
-import com.sun.org.apache.xalan.internal.xsltc.runtime.BasisLibrary;
-
-/**
- *
- * @author Administrator
- */
-public class TestSplunk {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        HttpService.setSslSecurityProtocol(SSLSecurityProtocol.TLSv1_2);
-        ServiceArgs loginArgs = new ServiceArgs();
-        loginArgs.setUsername("admin");
-        loginArgs.setPassword("admin");
-        loginArgs.setHost("localhost");
-        loginArgs.setPort(8089);
-
-        Service service = Service.connect(loginArgs);
-        SavedSearchCollection savedSearches = service.getSavedSearches();
-        System.out.println(savedSearches.size() + " saved searches are available to the current user:\n");
-        for (SavedSearch entity : savedSearches.values()) {
-            System.out.println("     " + entity.getName() +"IDs :"+entity.getTitle());
-            //System.out.println("     " + entity.getActionEmailPdfView());            
-        }
-    }
-
-}
+public static void prinObject(Object o)  {
+		if(null == o)
+		{
+			System.out.println("The passed object is null");
+			return;
+		}
+		for (Field field : o.getClass().getDeclaredFields()) {
+			field.setAccessible(true);
+			String name = field.getName();
+			Object value=null;
+			try{
+			value = field.get(o);
+			}
+			catch(Exception e){
+				e.printStackTrace();
+				}
+			System.out.printf("%s: %s%n", name, value);
+			}
+		}
