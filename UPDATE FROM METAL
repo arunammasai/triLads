@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SurveillanceSystemAlerts>
+   <VZ>
+      <AlarmOrigin>BLM</AlarmOrigin>
+   </VZ>
+   <Object>
+      <Property Name="Description">Forced to terminate the following PowerShell script because it ran past the configured timeout 300 seconds.....Script Name:.AgentStateRollup.ps1...One or more workflows were affected by this. ...Workflow name: ManagementGroupCollectionAgentHealthStatesRule..Instance name: All Management Servers Resource Pool..Instance ID: {4932D8F0-C8E2-2F4B-288E-3ED98A340B9F}..Management group: scom-rtx1-test.</Property>
+      <Property Name="CustomField1"/>
+      <Property Name="CustomField2">Host</Property>
+      <Property Name="CustomField3">rtxtd1-scms1.rtxvzscom.com</Property>
+      <Property Name="CustomField4">MOMENTARY</Property>
+      <Property Name="CustomField5">rtxtd1-scms1.rtxvzscom.com</Property>
+      <Property Name="CustomField6"/>
+      <Property Name="CustomField7"/>
+      <Property Name="CustomField8"/>
+      <Property Name="CustomField9"/>
+      <Property Name="CustomField10"/>
+      <Property Name="Id">3289a049-5584-409d-81e8-240c5f6f0672</Property>
+      <Property Name="ResolutionState">0</Property>
+      <Property Name="Severity">Warning</Property>
+      <Property Name="LastModified">6/29/2015 8:50:56 PM</Property>
+      <Property Name="LastModifiedBy">RTXVZSCOM\sAgarwal</Property>
+      <Property Name="TimeAdded">6/23/2015 9:12:37 PM</Property>
+      <Property Name="TimeResolved"/>
+      <Property Name="Name">Power Shell Script failed to run</Property>
+      <Property Name="Owner">Aniruth</Property>
+      <Property Name="ApplicationName">OperationsManager</Property>
+   </Object>
+</SurveillanceSystemAlerts>
+
+
+
+MQ information attached below.
+
+Host: eibdit.verizon.com
+Port: 1412
+Queue Manager: EIBDITB
+
+Queue *.REQUEST ? Tier3 system will send messages to this queue. METAL will consume from this.
+Queue *.RESPONSE ? METAL will send alarm update to this queue. Tier3 system will read from this. 
+
+Channel	Queue
+METAL.TEAM1.CHN	METAL.HACKATHON.TEAM1.REQUEST
+	METAL.HACKATHON.TEAM1.RESPONSE
+METAL.TEAM2.CHN	METAL.HACKATHON.TEAM2.REQUEST
+	METAL.HACKATHON.TEAM2.RESPONSE
+METAL.TEAM3.CHN	METAL.HACKATHON.TEAM3.REQUEST
+	METAL.HACKATHON.TEAM3.RESPONSE
+METAL.TEAM4.CHN	METAL.HACKATHON.TEAM4.REQUEST
+	METAL.HACKATHON.TEAM4.RESPONSE
+METAL.TEAM5.CHN	METAL.HACKATHON.TEAM5.REQUEST
+	METAL.HACKATHON.TEAM5.RESPONSE
+METAL.TEAM6.CHN	METAL.HACKATHON.TEAM6.REQUEST
+	METAL.HACKATHON.TEAM6.RESPONSE
+METAL.TEAM7.CHN	METAL.HACKATHON.TEAM7.REQUEST
+	METAL.HACKATHON.TEAM7.RESPONSE
+METAL.TEAM8.CHN	METAL.HACKATHON.TEAM8.REQUEST
+	METAL.HACKATHON.TEAM8.RESPONSE
