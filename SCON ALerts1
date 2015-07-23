@@ -1,0 +1,101 @@
+<?xml version="1.0" ?>
+<SurveillanceSystemAlerts>
+	<VZ>
+		<AlarmOrigin>SurveillanceSystem</AlarmOrigin>
+	</VZ>
+	<Object>
+		<Property Name="Description">Forced to terminate the following PowerShell script because it ran past the configured timeout 300 seconds.....Script Name:.AgentStateRollup.ps1...One or more workflows were affected by this. ...Workflow name: ManagementGroupCollectionAgentHealthStatesRule..Instance name: All Management Servers Resource Pool..Instance ID: {4932D8F0-C8E2-2F4B-288E-3ED98A340B9F}..Management group: scom-rtx1-test.</Property>
+		<Property Name="CustomField1"/>
+		<Property Name="CustomField2">Host</Property>
+		<Property Name="CustomField3">rtxtd1-scms1.rtxvzscom.com</Property>
+		<Property Name="CustomField4">MOMENTARY</Property>
+		<Property Name="CustomField5">rtxtd1-scms1.rtxvzscom.com</Property>
+		<Property Name="CustomField6"/>
+		<Property Name="CustomField7"/>
+		<Property Name="CustomField8"/>
+		<Property Name="CustomField9"/>
+		<Property Name="CustomField10"/>
+		<Property Name="Id">3289a049-5584-409d-81e8-240c5f6f0672</Property>
+		<Property Name="ResolutionState">0</Property>
+		<Property Name="Severity">Minor</Property>
+		<Property Name="LastModified">6/29/2015 8:50:56 PM</Property>
+		<Property Name="LastModifiedBy">RTXVZSCOM\sAgarwal</Property>
+		<Property Name="TimeAdded">6/23/2015 9:12:37 PM</Property>
+		<Property Name="TimeResolved"/>
+		<Property Name="Name">Power Shell Script failed to run</Property>
+		<Property Name="Owner"/>
+		<Property Name="PrincipalName">rtxtd1-scms1.rtxvzscom.com</Property>
+		<Property Name="ApplicationName">OperationsManager</Property>
+	</Object>
+	<Object>
+		<Property Name="Description">Forced to terminate the following PowerShell script because it ran past the configured timeout 300 seconds.....Script Name:.Discover Agent Versions...One or more workflows were affected by this. ...Workflow name: ManagementGroupDiscoveryAgentVersions..Instance name: All Management Servers Resource Pool..Instance ID: {4932D8F0-C8E2-2F4B-288E-3ED98A340B9F}..Management group: scom-rtx1-test.</Property>
+		<Property Name="CustomField1"/>
+		<Property Name="CustomField2">Host</Property>
+		<Property Name="CustomField3">rtxtd1-scms1.rtxvzscom.com</Property>
+		<Property Name="CustomField4">MOMENTARY</Property>
+		<Property Name="CustomField5">rtxtd1-scms1.rtxvzscom.com</Property>
+		<Property Name="CustomField6"/>
+		<Property Name="CustomField7"/>
+		<Property Name="CustomField8"/>
+		<Property Name="CustomField9"/>
+		<Property Name="CustomField10"/>
+		<Property Name="Id">e9eac2df-3c0a-4b8a-8b6d-c8a555784261</Property>
+		<Property Name="ResolutionState">0</Property>
+		<Property Name="Severity">Major</Property>
+		<Property Name="LastModified">6/29/2015 8:50:56 PM</Property>
+		<Property Name="LastModifiedBy">RTXVZSCOM\sAgarwal</Property>
+		<Property Name="TimeAdded">6/23/2015 9:16:02 PM</Property>
+		<Property Name="TimeResolved"/>
+		<Property Name="Name">Power Shell Script failed to run</Property>
+		<Property Name="Owner"/>
+		<Property Name="PrincipalName">rtxtd1-scms1.rtxvzscom.com</Property>
+		<Property Name="ApplicationName">OperationsManager</Property>
+	</Object>
+	<Object>
+		<Property Name="Description">Files: dellabb.exe,  Dell_MDStorageArray_ABBConfig.cfg,  dell_MDStorageArray_ip.cfg  not found on the OpsMgr 2007 Management Server at specific location. Please extract the Dell_MDStorageArray_ABBSetup.exe to the default folder path of C:\Dell_MDStorageArray_ABB to monitor the MD Storage Arrays from Dell Storage MP.</Property>
+		<Property Name="CustomField1"/>
+		<Property Name="CustomField2">Host</Property>
+		<Property Name="CustomField3">Rtxtd1-scmsb1.rtxvzscom.com</Property>
+		<Property Name="CustomField4">MOMENTARY</Property>
+		<Property Name="CustomField5">rtxtd1-scms1.rtxvzscom.com</Property>
+		<Property Name="CustomField6"/>
+		<Property Name="CustomField7"/>
+		<Property Name="CustomField8"/>
+		<Property Name="CustomField9"/>
+		<Property Name="CustomField10"/>
+		<Property Name="Id">071bdb7f-167b-4c90-afb9-ba178359a8d9</Property>
+		<Property Name="ResolutionState">0</Property>
+		<Property Name="Severity">Information</Property>
+		<Property Name="LastModified">6/29/2015 8:50:56 PM</Property>
+		<Property Name="LastModifiedBy">RTXVZSCOM\sAgarwal</Property>
+		<Property Name="TimeAdded">6/23/2015 9:20:16 PM</Property>
+		<Property Name="TimeResolved"/>
+		<Property Name="Name">Dell.MDStorageArray.Alert</Property>
+		<Property Name="Owner"/>
+		<Property Name="PrincipalName">Rtxtd1-scmsb1.rtxvzscom.com</Property>
+		<Property Name="ApplicationName">OperationsManager</Property>
+	</Object>
+	<Object>
+		<Property Name="Description">Files: dellabb.exe,  Dell_MDStorageArray_ABBConfig.cfg,  dell_MDStorageArray_ip.cfg  not found on the OpsMgr 2007 Management Server at specific location. Please extract the Dell_MDStorageArray_ABBSetup.exe to the default folder path of C:\Dell_MDStorageArray_ABB to monitor the MD Storage Arrays from Dell Storage MP.</Property>
+		<Property Name="CustomField1"/>
+		<Property Name="CustomField2">Host</Property>
+		<Property Name="CustomField3">rtxtd1-scms1.rtxvzscom.com</Property>
+		<Property Name="CustomField4">MOMENTARY</Property>
+		<Property Name="CustomField5">rtxtd1-scms1.rtxvzscom.com</Property>
+		<Property Name="CustomField6"/>
+		<Property Name="CustomField7"/>
+		<Property Name="CustomField8"/>
+		<Property Name="CustomField9"/>
+		<Property Name="CustomField10"/>
+		<Property Name="Id">cb01602e-a0a6-4cdc-88f2-daceb2d2a168</Property>
+		<Property Name="ResolutionState">0</Property>
+		<Property Name="Severity">Minor</Property>
+		<Property Name="LastModified">6/29/2015 8:50:56 PM</Property>
+		<Property Name="LastModifiedBy">RTXVZSCOM\sAgarwal</Property>
+		<Property Name="TimeAdded">6/23/2015 9:21:02 PM</Property>
+		<Property Name="TimeResolved"/>
+		<Property Name="Name">Dell.MDStorageArray.Alert</Property>
+		<Property Name="Owner"/>
+		<Property Name="PrincipalName">rtxtd1-scms1.rtxvzscom.com</Property>
+		<Property Name="ApplicationName">OperationsManager</Property>
+	</Object>
