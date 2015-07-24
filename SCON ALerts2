@@ -1,19 +1,15 @@
-public static void prinObject(Object o)  {
-		if(null == o)
-		{
-			System.out.println("The passed object is null");
-			return;
-		}
-		for (Field field : o.getClass().getDeclaredFields()) {
-			field.setAccessible(true);
-			String name = field.getName();
-			Object value=null;
-			try{
-			value = field.get(o);
-			}
-			catch(Exception e){
-				e.printStackTrace();
-				}
-			System.out.printf("%s: %s%n", name, value);
-			}
-		}
+import gzip import csv from subprocess import call
+
+def openany(p):
+ if p.endswith(".gz"):
+ return gzip.open(p)
+ else:
+ return open(p)
+
+event_count = int(sys.argv[1]) # number of events returned.
+results_file = sys.argv[8] # file with search results
+
+for row in csv.DictReader(openany(results_file)):
+ # Build a command line to call based on fields from splunk output
+ my_command = [ "ssh", row["shost"], "-l", row["suser"], .... ]
+ call(my_command)
