@@ -1,0 +1,59 @@
+<persistence-unit name="pricebookservice">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<!-- <jta-data-source>jdbc/VPRICE_PBKPMDS</jta-data-source> -->
+		<jta-data-source>jdbc/VPRICEPMDS</jta-data-source>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbCommitment</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbContract</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbCredit</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbCustomer</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbDiscountCategory</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbPbli</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbPbliChargeType</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbPbliDiscount</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbPbliPromotion</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbPbliRate</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbPbliRateFlat</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbPbliSpec</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbPbliTrans</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbSof</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbSofFeature</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbPricebook</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbProduct</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.CpbPromotion</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.cpb.RerunControlData</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.ChangeRequest</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.ChargeSpec</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.ChargeSpecValue</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.DiscountCategory</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.Item</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.ItemType</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.Matrix</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.MatrixCharge</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.MatrixChargeVersion</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.MatrixPrecedent</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.MatrixPrecedentVersion</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.MatrixTemplate</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.MatrixType</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.PricingDeter</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.PricingDeterVersion</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.PricingPattern</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.PricingPatternMap</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.PricingProgram</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.Rate</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.RateGrid</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.SpecificationId</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.SpecificationValue</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.SpecificationValue</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pricing.MatrixUrl</class>
+		<class>com.verizon.vprice.pricebookservice.ejb.entity.pb.PbRtbLcpContract</class>
+		<properties>
+			<property name="eclipselink.target-server" value="WebLogic_10" />
+			<property name="javax.persistence.jtaDataSource" value="jdbc/VPRICEPMDS" />
+			<property name="eclipselink.cache.shared.default" value="false"/>
+			<property name="javax.persistence.query.timeout" value="6000" />
+			<property name="eclipselink.logging.logger" value="ServerLogger" />
+			<!-- <property name="eclipselink.logging.level" value="CONFIG" /> -->
+			<property name="eclipselink.logging.level" value="FINE" />
+			<property name="eclipselink.logging.level.sql" value="FINE" />
+		</properties>
+	</persistence-unit>
