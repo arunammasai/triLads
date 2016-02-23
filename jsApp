@@ -1,0 +1,55 @@
+<html ng-app="myApp">
+<head>
+    <title>TestProject For JS</title>
+    <script type="text/javascript" src="angular.min.js"></script>
+    <!--script type="text/javascript" src="app.js"></script-->
+    <script type="text/javascript" src="controllers/myControl.js"></script>
+</head>
+<body>
+    <div ng-controller="appController">
+    <p>{{firstName}}</p>
+    <p>{{lastName}}</p>
+    
+    <a href="#" ng-click="setName('Arun','Ammasai')">Set my Name</a>
+    </div>
+    
+    
+    <div ng-controller="divideController">
+        <div>Value 1:<input type="text" ng-model="numberData.value1"></div>
+        <div>Value 2:<input type="text" ng-model="numberData.value2"></div>
+        <button ng-click=divide(numberData.value1,numberData.value2)>
+            Press to calculate {{numberData.value1}}/{{numberData.value2}}
+    </div>
+</body>
+
+</html>
+
+
+
+
+-----------------------
+var myApp =angular.module('myApp',[]);
+
+
+myApp.controller('appController',function($scope){
+    
+    $scope.firstName="";
+    $scope.lastName="";
+    
+    $scope.setName = function($firstName,$lastName){
+        $scope.firstName=$firstName;
+        $scope.lastName=$lastName;
+    }
+});
+
+
+myApp.controller("divideController",function($scope){
+    $scope.numberData ={
+        value1 :1,
+        value2 :1
+    }
+    
+    $scope.divide =function(val1,val2){
+        window.alert(val1/val2);        
+    }
+    });
